@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/D530/D530.iml" filepath="$PROJECT_DIR$/D530/D530.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D531/D531.iml" filepath="$PROJECT_DIR$/D531/D531.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D601/D601.iml" filepath="$PROJECT_DIR$/D601/D601.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D602/D602.iml" filepath="$PROJECT_DIR$/D602/D602.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D606/D606.iml" filepath="$PROJECT_DIR$/D606/D606.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D607/D607.iml" filepath="$PROJECT_DIR$/D607/D607.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D608/D608.iml" filepath="$PROJECT_DIR$/D608/D608.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D609/D609.iml" filepath="$PROJECT_DIR$/D609/D609.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D610/D610.iml" filepath="$PROJECT_DIR$/D610/D610.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D613/D613.iml" filepath="$PROJECT_DIR$/D613/D613.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D614/D614.iml" filepath="$PROJECT_DIR$/D614/D614.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D615/D615.iml" filepath="$PROJECT_DIR$/D615/D615.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaworkspace.iml" filepath="$PROJECT_DIR$/javaworkspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+    </modules>
+  </component>
+</project>
