@@ -153,7 +153,7 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException();
         }finally{
             // 释放资源 先开的后释放 先conn开所以后conn关
-            JDBCUtil.close(null,pstm,null);
+            JDBCUtil.close(rs,pstm,null);
         }
 
     }
@@ -189,7 +189,7 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException();
         }finally{
             // 释放资源 先开的后释放 先conn开所以后conn关
-            JDBCUtil.close(null,pstm,null);
+            JDBCUtil.close(rs,pstm,null);
         }
 
     }
@@ -224,7 +224,7 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException();
         }finally{
             // 释放资源 先开的后释放 先conn开所以后conn关
-            JDBCUtil.close(null,pstm, null);
+            JDBCUtil.close(rs,pstm, null);
         }
 
     }
@@ -259,7 +259,7 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException();
         }finally{
             // 释放资源 先开的后释放 先conn开所以后conn关
-            JDBCUtil.close(null,pstm, null);
+            JDBCUtil.close(rs,pstm, null);
         }
 
     }
@@ -293,7 +293,7 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException();
         }finally{
             // 释放资源 先开的后释放 先conn开所以后conn关
-            JDBCUtil.close(null,pstm, null);
+            JDBCUtil.close(rs,pstm, null);
         }
 
     }
