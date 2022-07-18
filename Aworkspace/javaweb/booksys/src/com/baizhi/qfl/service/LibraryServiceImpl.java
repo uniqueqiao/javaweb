@@ -140,7 +140,6 @@ public class LibraryServiceImpl implements LibraryService{
         }finally {
             JDBCUtil.close(null,null,conn);
         }
-
         return list;
     }
 

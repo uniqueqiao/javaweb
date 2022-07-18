@@ -20,5 +20,13 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.10-bin (7)" level="project" />
+    <orderEntry type="library" name="jsp-api (7)" level="project" />
+    <orderEntry type="library" name="jstl (4)" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.10-bin (17)" level="project" />
+    <orderEntry type="library" name="servlet-api (12)" level="project" />
+    <orderEntry type="library" name="standard (4)" level="project" />
+    <orderEntry type="library" name="struts_ems" level="project" />
+    <orderEntry type="module" module-name="jsp_hw1" />
   </component>
 </module>

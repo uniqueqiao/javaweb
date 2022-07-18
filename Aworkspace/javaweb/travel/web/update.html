@@ -24,18 +24,19 @@
                 height: 200px;
                 width: 400px;
             }
-            .vcode{
-                height: 30px;
-                width: 50px;
-                vertical-align: center;
-            }
             .f{
                 width: 300px;
                 float: left;
             }
             #p1{width: 400px;
                 float: right;
-                padding-top: 30px;
+                padding-top: 100px;
+
+            }
+            img{
+                width: 100px;
+                height: 100px;
+                vertical-align: baseline;
             }
 
         </style>
@@ -44,13 +45,16 @@
     <div class="box">
         <div class="head" >旅游信息管理系统</div>
         <div class="mid f">
-                <h4 style="color: dodgerblue">登录</h4>
+                <h3 style="color: dodgerblue">修改景点</h3>
                 <form action="showAll.html" method="post">
-                    账号：<input type="text" name="name"><br><br>
-                    密码：<input type="password" name="psw"><br><br>
-                    验证码：<input type="text" name="yzm"><img class="vcode" src="img/vcode.png"><br><br>
+                    景点：<input type="text" name="jd"><br><br>
+                    印象图片：<img  src="img/yihy.jpg"><br><br>
+                    旺季时间：<input type="text" name="wt" value="颐和园"><br><br>
+                    旺季门票：<input type="text" name="wm" value="4.1~4.30"><br><br>
+                    淡季门票：<input type="text" name="dm" value="30"> <br><br>
+                    所属省份：<input type="text" name="p" value="20"><br><br>
                     <input type="submit" value="提交">
-                    <a href="">去注册</a><br><br>
+                    <a href="">返回</a><br><br>
                 </form>
         </div> <div id="p1"><img class="i" src="img/timg.jpg"></div>
         <div style='clear:both;'></div>

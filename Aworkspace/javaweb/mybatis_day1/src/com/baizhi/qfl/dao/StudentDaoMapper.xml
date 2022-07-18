@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace属性指定当前mapper的dao接口的全限定名 -->
+<mapper namespace="com.baizhi.qfl.dao.StudentDao">
+    <!-- select命令使用的是select标签
+     id属性指定的是方法名；parameterType指定参数类型 可以不写
+     resultType指定的返回值类型 ,可以不写
+     如果参数和返回值类型是自定义的类型，则指定属性时需要写“全限定名”
+      /* 原来的？改成#{java方法参数}大括号里的id其实是方法的参数，前一个是数据库里的id名字 */
+       如果返回类型是集合，resultType只需要写集合里的元素的类型即可 -->
+    <select id="selectById" parameterType="Integer"
+            resultType="com.baizhi.qfl.entity.Student">
+        select * from student where id = #{id}
+    </select>
+    <select id="selectAll" resultType="com.baizhi.qfl.entity.Student">
+        select * from student
+    </select>
+    <delete id="deleteById" parameterType="Integer">
+        delete from student  where id = #{id}
+    </delete>
+    <!-- 参数是一个对象时，#{}取值只需要写参数对象的具体属性名xxx即可，千万不要写stu.xxx -->
+    <insert id="insert" parameterType="com.baizhi.qfl.entity.Student">
+        INSERT INTO student(name,age,score) VALUES(#{name},#{age},#{score})
+    </insert>
+    <update id="update" parameterType="com.baizhi.qfl.entity.Student">
+        update student set name=#{name},age=#{age},score=#{score} where id=#{id}
+    </update>
+</mapper>
