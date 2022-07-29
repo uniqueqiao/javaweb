@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ajax_day1/ajax_day1.iml" filepath="$PROJECT_DIR$/ajax_day1/ajax_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ajax_day2/ajax_day2.iml" filepath="$PROJECT_DIR$/ajax_day2/ajax_day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ajax_novel/ajax_novel.iml" filepath="$PROJECT_DIR$/ajax_novel/ajax_novel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/booksys/booksys.iml" filepath="$PROJECT_DIR$/booksys/booksys.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems/ems.iml" filepath="$PROJECT_DIR$/ems/ems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fruit/fruit.iml" filepath="$PROJECT_DIR$/fruit/fruit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/html_day1/html_day1.iml" filepath="$PROJECT_DIR$/html_day1/html_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc_day1/jdbc_day1.iml" filepath="$PROJECT_DIR$/jdbc_day1/jdbc_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc_day2/jdbc_day2.iml" filepath="$PROJECT_DIR$/jdbc_day2/jdbc_day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc_day3/jdbc_day3.iml" filepath="$PROJECT_DIR$/jdbc_day3/jdbc_day3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jquery_day1/jquery_day1.iml" filepath="$PROJECT_DIR$/jquery_day1/jquery_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js_day1/js_day1.iml" filepath="$PROJECT_DIR$/js_day1/js_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js_day3/js_day3.iml" filepath="$PROJECT_DIR$/js_day3/js_day3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsp_day1/jsp_day1.iml" filepath="$PROJECT_DIR$/jsp_day1/jsp_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsp_day2/jsp_day2.iml" filepath="$PROJECT_DIR$/jsp_day2/jsp_day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsp_day3/jsp_day3.iml" filepath="$PROJECT_DIR$/jsp_day3/jsp_day3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsp_hw1/jsp_hw1.iml" filepath="$PROJECT_DIR$/jsp_hw1/jsp_hw1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_1v1/mybatis_1v1.iml" filepath="$PROJECT_DIR$/mybatis_1v1/mybatis_1v1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_day1/mybatis_day1.iml" filepath="$PROJECT_DIR$/mybatis_day1/mybatis_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_day2/mybatis_day2.iml" filepath="$PROJECT_DIR$/mybatis_day2/mybatis_day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_day3/mybatis_day3.iml" filepath="$PROJECT_DIR$/mybatis_day3/mybatis_day3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_ems/mybatis_ems.iml" filepath="$PROJECT_DIR$/mybatis_ems/mybatis_ems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_nvn/mybatis_nvn.iml" filepath="$PROJECT_DIR$/mybatis_nvn/mybatis_nvn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/news/news.iml" filepath="$PROJECT_DIR$/news/news.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servlet_day1/servlet_day1.iml" filepath="$PROJECT_DIR$/servlet_day1/servlet_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servlet_day2/servlet_day2.iml" filepath="$PROJECT_DIR$/servlet_day2/servlet_day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servlet_hw704/servlet_hw704.iml" filepath="$PROJECT_DIR$/servlet_hw704/servlet_hw704.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servlet_student/servlet_student.iml" filepath="$PROJECT_DIR$/servlet_student/servlet_student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts_day1/struts_day1.iml" filepath="$PROJECT_DIR$/struts_day1/struts_day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts_day2/struts_day2.iml" filepath="$PROJECT_DIR$/struts_day2/struts_day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts_day3/struts_day3.iml" filepath="$PROJECT_DIR$/struts_day3/struts_day3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts_ems/struts_ems.iml" filepath="$PROJECT_DIR$/struts_ems/struts_ems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts_hw1/struts_hw1.iml" filepath="$PROJECT_DIR$/struts_hw1/struts_hw1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/telbook/telbook.iml" filepath="$PROJECT_DIR$/telbook/telbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel/travel.iml" filepath="$PROJECT_DIR$/travel/travel.iml" />
+    </modules>
+  </component>
+</project>

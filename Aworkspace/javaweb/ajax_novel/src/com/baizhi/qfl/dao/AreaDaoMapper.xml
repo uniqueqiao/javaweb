@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace属性指定当前mapper的dao接口的全限定名 -->
+<mapper namespace="com.baizhi.qfl.dao.AreaDao">
+    <!-- 方法有两个及两个以上的参数时，parameterType省略不写，mybatis不支持方法重载，也就是说dao层方法不能重名
+          java代码在编译时，形参名被舍弃，不会编译到字节码文件中，形参不能在映射文件中直接使用，可以通过参数列表的下标指定获得哪一参数，下标从0开始-->
+    <resultMap id="rm2" type="Area">
+        <id column="aid" property="id"></id>
+        <result column="acode" property="code"></result>
+        <result column="aname" property="name"></result>
+        <association property="city" javaType="City">
+            <id column="cid" property="id"></id>
+            <result column="ccode" property="code"></result>
+            <result column="cname" property="name"></result>
+        </association>
+    </resultMap>
+    <select id="queryAreaByCtiyCode" parameterType="String" resultMap="rm2">
+        select a.id aid,a.code acode , a.name aname , c.id cid ,c.code ccode , c.name cname
+        from area a left join city c
+        on a.citycode=c.code
+        where a.citycode=#{ccode}
+    </select>
+</mapper>

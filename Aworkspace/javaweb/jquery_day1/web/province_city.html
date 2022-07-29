@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/jquery_day1/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+
+        var liaoning = [ {text:"沈阳",value:"shenyang"} , {text:"大连",value:"dalian"} , {text:"鞍山",value:"anshan"} , {text:"锦州",value:"jinzhou"} ];
+        var shandong = [ {text:"济南",value:"jinan"} , {text:"青岛",value:"qingdao"} , {text:"潍坊",value:"weifang"} , {text:"烟台",value:"yantai"} ];
+        var henan = [ {text:"郑州",value:"zhengzhou"} , {text:"洛阳",value:"luoyang"} , {text:"安阳",value:"anyang"} , {text:"信阳",value:"xinyang"} ];
+        var hebei = [ {text:"石家庄",value:"shijiazhuang"} , {text:"保定",value:"baoding"} , {text:"唐山",value:"tangshan"} , {text:"承德",value:"chengde"} ];
+        var hunan = [ {text:"长沙",value:"changsha"} ,{text:"岳阳",value:"yueyang"} , {text:"郴州",value:"chenzhou"}, {text:"株洲",value:"zhuzhou"} ];
+
+        function getCitys( prov ){
+            if( prov=="liaoning") return liaoning ;
+            if( prov=="shandong") return shandong ;
+            if( prov=="henan") return henan ;
+            if( prov=="hebei") return hebei ;
+            else return hunan ;
+        }
+        function f1() {
+            //清空下拉列表
+            $("#city option:gt(0)").remove();
+            //获取被选中的option的value
+            var prov=$("#prov option:selected").val();
+            //获取省份对应的城市数组
+            var citys=getCitys( prov );
+            //遍历数组，
+            for (var i = 0; i < citys.length; i++) {
+                //将数据封装成option标签对象
+                var opt = new Option(citys[i].text,citys[i].value);
+                // 追加到城市下拉列表里
+                $("#city").append(opt);
+
+            }
+        }
+        // 写外套
+        $(function(){
+
+            // 为省份下拉列表添加事件 ？
+            $("#prov").change( function() {
+                f1();
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+
+     <select id="prov" name="prov" >
+         <option>请选择省份</option>
+         <option value="liaoning">辽宁</option>
+         <option value="shandong">山东</option>
+         <option value="henan">河南</option>
+         <option value="hebei">河北</option>
+         <option value="hunan">湖南</option>
+     </select>
+     <select id="city" name="city">
+         <option>请选择城市</option>
+     </select>
+
+</body>
+</html>

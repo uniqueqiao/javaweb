@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jstl (4)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ems/web/WEB-INF/lib/jstl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

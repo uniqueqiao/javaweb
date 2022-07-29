@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<style type="text/css">
+		   body{ font-size:150% }
+           td{text-align:center}
+           .abc{
+               background-color: aquamarine;
+               color: indianred;
+           }
+	    </style>
+        <meta charset="UTF-8">
+          <!--引入外部js-->
+        <script type="text/javascript" src="jquery-1.8.3.js"></script>
+	    <script type="text/javascript">
+            //写外套
+            $(function() {
+               //为第一个复选框添加事件
+               $("#ck1").live("click",function() {
+                   f1();
+               });
+                $("#selectAll").live("click",function() {
+                    selectAll();
+                });
+                $("#cancelSelect").live("click",function(){
+                    cancelSelect();
+                });
+                //删除所有选中
+                $("#deleteMany").live("click",function(){
+                    deleteMany();
+                });
+                //为下面的复选框添加事件---jQuery支持对一组标签添加事件
+                $("input[type=checkbox]:gt(0)").live("click",function() {
+                    f2() ;
+                });
+                //为除了第一个tr添加移入移出事件
+                $("#tbody tr:gt(0)").live("mouseover",function(){f3(this) ;}).live("mouseout",function() {f4(this);});
+                //为所有+添加事件
+                $("input[value='+']").live("click",function() {f5(this);});
+                //为所有-添加事件
+                $("input[value='-']").live("click",function() {f8(this);});
+                //为delete按钮添加单击事件
+                $("input[value=delete]").live("click",function() {f6(this);});
+                //为add按钮添加单击事件
+                $("input[value=add]").live("click",function() {f7(); });
+                //count文本框添加焦点离开事件
+                $("input[type=text]").live("blur",function() {count(this); });
+            });
+            //为第一个复选框提供功能函数
+            function f1() {
+                $("input[type=checkbox]:gt(0)").prop("checked",$("#ck1").prop("checked"));
+            }
+            //为下面的复选框提供功能函数
+            function f2() {
+                //得到除了第一个checkbox数量
+                var count=$("input[type=checkbox]:gt(0)").length;
+                //得到除了第一个checkbox,别选中的数量
+                var count2=$("input[type=checkbox]:gt(0):checked").length;
+                /*if(count==count2){
+                    $("#ck1").prop("checked", true);
+                }else $("#ck1").prop("checked", false);*/
+                $("#ck1").prop("checked",count==count2);
+
+            }
+            //为除了第一个tr添加移入移出功能函数
+            function f3(tag) {
+                $(tag).addClass("abc");
+
+            }
+            function f4(tag) {
+                $(tag).removeClass("abc");
+            }
+            //为所有+提供功能函数
+            function f5(tag){
+                //操作文本框
+                var inpCount=$(tag).prev();
+                var newCount=inpCount.val() - 0 + 1;
+                inpCount.val(newCount);
+                //得到价格
+                var price=$(tag).parent().prev().html();
+                //设置总价
+                $(tag).parent().next().html(newCount * price);
+            }
+            //为所有-提供功能函数
+            function f8(tag){
+                //操作文本框
+                var inpCount=$(tag).next();
+                var newCount=inpCount.val() - 1;
+                if (newCount<=0) {
+                    alert("最后一件！")
+                    f6(tag);
+
+                }else {
+                    inpCount.val(newCount);
+                    //得到价格
+                    var price=$(tag).parent().prev().html();
+                    //设置总价
+                    $(tag).parent().next().html(newCount * price);
+                }
+
+
+            }
+            //为delete按钮提供功能函数
+            function f6(tag){
+                var ba=window.confirm("您确定要删除吗？")
+                if (ba == true) {
+                    /*var id=$(tag).parent().parent().children().eq(1).html();
+                    location.href="/jquery_day1/deleteAction?id="+id;*/
+                    $(tag).parent().parent().remove();//只是动画效果
+                }
+
+            }
+            //为add按钮提供功能函数
+            function f7(){
+                //获取三个文本框数据
+                var id=$("#id").val();
+                var name=$("#name").val();
+                var price=$("#price").val();
+                //根据数据生成tr标签对象
+                var td1 = $("<td> <input type='checkbox' /> </td>");
+                var td2 = $("<td>"+id+"</td>");
+                var td3 = $("<td>"+name+"</td>");
+                var td4 = $("<td>"+price+"</td>");
+                var td5 = $("<td><input type='button' value='-'/><input type='text' size='2' value='1'/><input type='button' value='+'/></td>");
+                var td6 = $("<td>"+price+"</td>");
+                var td7 = $("<td> <input type='button' value='delete'/> </td>");
+                var tr = $("<tr></tr>");
+                tr.append( td1 ).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7);
+                //3. 将tr追加到tbody标签里即可
+                $("#tbody").append(tr);
+            }
+            function selectAll(){
+                //选中所有
+                $("input[type=checkbox]").prop("checked",true);
+            }
+            function cancelSelect(){
+                //选中所有
+                $("input[type=checkbox]").prop("checked",false);
+            }
+            function deleteMany() {
+                var ba=window.confirm("您确定要删除所有选中吗？")
+                if (ba == true) {
+                    var items= $("input[type=checkbox]:gt(0)")
+                    for (var i=0;i<items.length;i++){
+                        if($(items[i]).prop("checked")){
+                            $(items[i]).parent().parent().remove();
+                        }
+                    }
+                }
+            }
+            function count(tag) {
+                var count=$(tag).val()-0;
+                var price=$(tag).parent().prev().html();
+                //设置总价
+                $(tag).parent().next().html(count * price);
+            }
+	    </script>
+  </head>
+	
+	
+  <body>
+  	 Id: <input type="text" id="id"  style="margin-right:20px"/>
+  	 Name: <input type="text" id="name" style="margin-right:20px"/> 
+  	 Price:<input type="text" id="price"/>
+  	 <input type="button" value="add" style="margin-left:20px"/>
+  	 
+  	 <hr size="2"/>
+  	 
+  	 <p> &nbsp; </p>
+     <table border="1" bordercolor="blue" cellspacing="0" width="70%" align="center">
+       <tbody id="tbody">
+          <tr bgcolor="lightblue" align="center" >
+          	  <td><b> <input type="checkbox" id="ck1"/> </b></td>
+              <td><b> Id </b></td>
+              <td><b> Name </b></td>
+			  <td><b> Price </b></td>
+			  <td><b> Count </b></td>
+			  <td><b> Total_Price </b></td>
+              <td><b> Delete </b> </td>
+          </tr>
+          <tr  >
+              <td> <input type="checkbox" /> </td>
+              <td>1</td>
+              <td>Iphone6</td>
+			  <td>5000</td>
+              <td>
+                  <input type="button" value="-"/>
+                  <input type="text" size="2" value="1"/>
+                  <input type="button" value="+"/>
+              </td>
+              <td>5000</td>
+              <td> <input type="button" value="delete"/> </td>
+          </tr>
+          <tr >
+              <td> <input type="checkbox" /> </td>
+              <td>2</td>
+              <td>IPad</td>
+			  <td>2000</td>
+              <td>
+                  <input type="button" value="-"/>
+                  <input type="text" size="2" value="1"/>
+                  <input type="button" value="+"/>
+              </td>
+              <td>2000</td>
+              <td> <input type="button" value="delete"/> </td>
+          </tr>
+          <tr >
+              <td> <input type="checkbox" /> </td>
+              <td>3</td>
+              <td>Apple</td>
+			  <td>7</td>
+              <td>
+                  <input type="button" value="-"/>
+                  <input type="text" size="2" value="1"/>
+                  <input type="button" value="+"/>
+              </td>
+              <td>7</td>
+              <td> <input type="button" value="delete"/> </td>
+          </tr>
+     </table>
+     <div style="text-align:center">
+          <input type="button" value="select all" style="margin-right:20px" id="selectAll"/>
+          <input type="button" value="delete all select" style="margin-right:20px" id="deleteMany"/>
+          <input type="button" value="cancel select" style="margin-right:20px" id="cancelSelect"/>
+     </div>
+  </body>
+</html>

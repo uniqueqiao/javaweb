@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="base">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/struts_day1/web/lib/jsp-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/struts_day1/web/lib/jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/struts_day1/web/lib/mysql-connector-java-5.1.10-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/struts_day1/web/lib/ognl-3.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/struts_day1/web/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/struts_day1/web/lib/standard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

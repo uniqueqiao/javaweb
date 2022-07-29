@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script type="text/javascript" src="jquery-1.8.3.js"></script>
+        <script type="text/javascript">
+            function f1(){
+                //jquery
+                //标签选择器 b
+                $("h1").css("color","red");
+                //id选择器
+                $("#t1").css("color","yellow");
+                //class类选择器  cde变色
+                $(".abc").css("color","blue");
+                //多路类选择器  bcde变色
+                $(".abc,#t1").css("color","green");
+                //后代选择器  $(选择器1 选择器2)在选择器1里面查找选择器2标签
+                //$("div span").css("color","pink");//1,2,4
+                //$("#d1 span").css("color","pink");//1,2
+                //$("#d1 p span").css("color","pink");//2
+                $("#d1>span").css("color","blue");//1,直接孩子
+            }
+        </script>
+    </head>
+    <body>
+    <h1>AAAAAAAAAAAAAAAAAAA</h1>
+    <h1 id="t1">BBBBBBBBBBBBBBBBBBB</h1>
+    <h1 class="abc">CCCCCCCCCCCCCCCCCCC</h1>
+    <p class="abc">dddddddddddddddddddd</p>
+    <h3 class="abc">eeeeeeeeeeeeeeeeeee</h3>
+    <span>55555555555</span>
+    <div id="d1">
+        <span>11111111111</span>
+        <p>
+            <span>2222222222</span>333333333333
+        </p>
+    </div>
+    <div id="d2">
+        <span>444444444444</span>
+    </div>
+
+    <input type="button" value="test" onclick="f1()">
+    </body>
+</html>

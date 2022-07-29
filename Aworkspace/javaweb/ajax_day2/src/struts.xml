@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package namespace="/stu" extends="struts-default" name="stu">
+		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.StudentAction"></action>
+		<action name="ShowOneAction" method="showOne" class="com.baizhi.qfl.action.StudentAction"></action>
+	</package>
+</struts>

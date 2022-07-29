@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script type="text/javascript" src="jquery-1.8.3.js"></script>
+        <script type="text/javascript">
+            function f1(){
+                //jquery
+                //$("#t3+li").css("color","red");//d,必须是直接兄弟
+                //$("#t3~li").css("color","red");//d，e
+                //$("#d1 li:first").css("color","red");//a
+                //$("#d1 li:even").css("color","red");//a,c,e
+                //gt:>  lt:< et:=
+                $("#d1 li:gt(0)").css("color","red");//bcde
+
+            }
+        </script>
+    </head>
+    <body>
+    <ul>
+        <li>1111111111</li>
+        <li>2222222222</li>
+    </ul>
+    <ul id="d1">
+        <li>aaaaaaaaa</li>
+        <li>bbbbbbbbb</li>
+        <li id="t3">cccccccc</li>
+        <li>ddddddddd</li>
+        <li>eeeeeeeee</li>
+        <span>fffffffff</span>
+        <input type="button" value="test" onclick="f1()">
+    </ul>
+    </body>
+</html>

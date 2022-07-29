@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package namespace="/prov" extends="struts-default" name="prov">
+		<action name="ShowAllProvinceAction" method="showAllProvince" class="com.baizhi.qfl.action.ProvinceAction"></action>
+	</package>
+	<package namespace="/city" extends="struts-default" name="city">
+		<action name="ShowCityByPcodeAction" method="showCityByProvinceCode" class="com.baizhi.qfl.action.CityAction"></action>
+	</package>
+	<package namespace="/area" extends="struts-default" name="area">
+		<action name="ShowAreaByCityCodeAction" method="showAreaByCityCode" class="com.baizhi.qfl.action.AreaAction"></action>
+	</package>
+</struts>
