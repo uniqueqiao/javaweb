@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package namespace="/city" extends="struts-default" name="city">
+		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.CityAction">
+			<result name="ok" type="redirect">/city/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.CityAction">
+			<result name="ok" type="redirectAction">/city/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="AddAction" method="add" class="com.baizhi.qfl.action.CityAction">
+			<result name="ok" type="redirectAction">/city/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	<package namespace="/tag" extends="struts-default" name="tag">
+		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.TagAction">
+			<result name="ok" type="redirect">/tag/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.TagAction">
+			<result name="ok" type="redirectAction">/tag/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="AddAction" method="add" class="com.baizhi.qfl.action.TagAction">
+			<result name="ok" type="redirectAction">/tag/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+</struts>

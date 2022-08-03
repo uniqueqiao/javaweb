@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<!-- mybatis的所有配置都必须定义在configuration标签里 -->
+<configuration>
+    <!-- 引入外部小配置文件 只能定义一次 -->
+    <properties resource="db.properties"></properties>
+    <!-- mybatis 允许给实体类对象分别定义简称/别名 -->
+    <typeAliases>
+       <!-- <typeAlias type="com.baizhi.qfl.entity.Teacher" alias="Teacher"></typeAlias> -->
+        <!-- 针对实体类包 同意定义 不区分大小写  优先选择这个 -->
+        <package name="com.baizhi.qfl.entity"/>
+    </typeAliases>
+   <!-- 配置mybatis运行环境，如果需要连接多个数据库，则需要多个enviroment标签 -->
+   <environments default="d1">
+      <!-- 配置一个mybatis的运行环境，id属性是这个环境的唯一标识。-->
+      <environment id="d1">
+	     <!-- 设置mybatis完成数据库操作时事务的提交策略，type属性值为"JDBC",表示用Jdbc事务提交方式提交。-->
+         <transactionManager type="JDBC"></transactionManager>
+		 <!-- 配置数据库连接，type属性值为“POOLED”，表示使用mybatis内置连接池 -->
+         <dataSource type="POOLED">
+           <property name="driver" value= "${mydriver}"></property>
+           <property name="url" value="${url}"></property>
+           <property name="username" value="${username}"></property>
+           <property name="password" value="${password}"/>
+         </dataSource>
+      </environment>
+   </environments>
+   <!-- 注册映射文件 -->
+    <mappers>
+        <!-- 通过resource属性指定mapper文件位置，从src下开始，不能以/开头，路径分隔符/ -->
+        <mapper resource="com/baizhi/qfl/mapper/CityDaoMapper.xml"></mapper>
+        <mapper resource="com/baizhi/qfl/mapper/TagDaoMapper.xml"></mapper>
+        <mapper resource="com/baizhi/qfl/mapper/ClazzDaoMapper.xml"></mapper>
+        <mapper resource="com/baizhi/qfl/mapper/UserDaoMapper.xml"></mapper>
+    </mappers>
+</configuration>
