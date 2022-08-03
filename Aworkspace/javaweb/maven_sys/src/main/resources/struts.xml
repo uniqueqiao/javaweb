@@ -4,6 +4,36 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+	<package namespace="/clazz" extends="struts-default" name="clazz">
+		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.ClazzAction">
+			<result name="ok" type="redirect">/clazz/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="ShowAllClazzAction" method="showAllClazz" class="com.baizhi.qfl.action.ClazzAction"></action>
+		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.ClazzAction">
+			<result name="ok" type="redirectAction">/clazz/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="AddAction" method="add" class="com.baizhi.qfl.action.ClazzAction">
+			<param name="directory">/logo</param>
+			<result name="ok" type="redirectAction">/clazz/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	<package namespace="/group" extends="struts-default" name="group">
+		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.GroupAction">
+			<result name="ok" type="redirect">/group/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.GroupAction">
+			<result name="ok" type="redirectAction">/group/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="AddAction" method="add" class="com.baizhi.qfl.action.GroupAction">
+			<result name="ok" type="redirectAction">/group/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
 	<package namespace="/city" extends="struts-default" name="city">
 		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.CityAction">
 			<result name="ok" type="redirect">/city/index.jsp</result>
@@ -23,6 +53,9 @@
 			<result name="ok" type="redirect">/tag/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="ShowAllClazzTagAction" method="showAllClazzTag" class="com.baizhi.qfl.action.TagAction">
+		</action>
+
 		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.TagAction">
 			<result name="ok" type="redirectAction">/tag/ShowAllAction</result>
 			<result name="error">/error.jsp</result>

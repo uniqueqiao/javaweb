@@ -6,6 +6,8 @@ import com.baizhi.qfl.entity.Tag;
 import java.util.List;
 
 public interface TagService {
+    //异步查所有班级tag
+    public List<Tag> queryAllClazzTag();
     // 1. 查所有
     public List<Tag> getAll();
     // 2.删除

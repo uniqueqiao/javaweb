@@ -33,6 +33,7 @@
         <mapper resource="com/baizhi/qfl/mapper/CityDaoMapper.xml"></mapper>
         <mapper resource="com/baizhi/qfl/mapper/TagDaoMapper.xml"></mapper>
         <mapper resource="com/baizhi/qfl/mapper/ClazzDaoMapper.xml"></mapper>
+        <mapper resource="com/baizhi/qfl/mapper/GroupDaoMapper.xml"></mapper>
         <mapper resource="com/baizhi/qfl/mapper/UserDaoMapper.xml"></mapper>
     </mappers>
 </configuration>

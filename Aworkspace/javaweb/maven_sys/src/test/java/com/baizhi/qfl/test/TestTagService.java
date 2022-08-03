@@ -26,6 +26,14 @@ public class TestTagService {
         }
     }
     @Test
+    public void queryAllCTag(){
+        TagService ts =new TagServiceImpl();
+        List<Tag> list= ts.queryAllClazzTag();
+        for (Tag tag : list) {
+            System.out.println(tag);
+        }
+    }
+    @Test
     public void delete(){
         TagService ts =new TagServiceImpl();
         ts.delete(21);

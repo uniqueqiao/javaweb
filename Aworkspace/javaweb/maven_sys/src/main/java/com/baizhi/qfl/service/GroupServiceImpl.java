@@ -1,43 +1,25 @@
 package com.baizhi.qfl.service;
 
-import com.baizhi.qfl.dao.CityDao;
-import com.baizhi.qfl.dao.TagDao;
-import com.baizhi.qfl.entity.City;
-import com.baizhi.qfl.entity.Tag;
+import com.baizhi.qfl.dao.ClazzDao;
+import com.baizhi.qfl.dao.GroupDao;
+import com.baizhi.qfl.entity.Clazz;
+import com.baizhi.qfl.entity.Group;
 import com.baizhi.qfl.util.DBUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Date;
 import java.util.List;
 
-public class TagServiceImpl implements TagService{
-    @Override
-    public List<Tag> queryAllClazzTag() {
-        SqlSession session = null;
-        try{
-            session = DBUtil.openSession();
-            // 调用dao的方法获取省份数据
-            TagDao dao = session.getMapper(TagDao.class);
-            List<Tag> list = dao.queryAllClazzTag();
-            // session.commit();  只有业务里涉及到 增删改
-            return list;
-        }catch(Exception e){
-            e.printStackTrace();
-            // session.rollback();
-            throw new RuntimeException(e.getMessage());
-        }finally{
-            DBUtil.close();
-        }
-    }
+public class GroupServiceImpl implements GroupService{
 
     @Override
-    public List<Tag> getAll() {
+    public List<Group> getAll() {
         SqlSession session = null;
         try{
             session = DBUtil.openSession();
             // 调用dao的方法获取省份数据
-            TagDao dao = session.getMapper(TagDao.class);
-            List<Tag> list = dao.selectAll();
+            GroupDao dao = session.getMapper(GroupDao.class);
+            List<Group> list = dao.selectAll();
             // session.commit();  只有业务里涉及到 增删改
             return list;
         }catch(Exception e){
@@ -55,7 +37,7 @@ public class TagServiceImpl implements TagService{
         try{
             session = DBUtil.openSession();
             // 调用dao的方法
-            TagDao dao = session.getMapper(TagDao.class);
+            GroupDao dao = session.getMapper(GroupDao.class);
             dao.delete(id);
             session.commit();  //只有业务里涉及到 增删改
         }catch(Exception e){
@@ -68,18 +50,21 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    public void insert(Tag tag) {
+    public void insert(Group group) {
         SqlSession session = null;
         try{
             session = DBUtil.openSession();
             // 调用dao的方法
-            TagDao dao = session.getMapper(TagDao.class);
-            Tag t=dao.selectByNameAndType(tag.getName(), tag.getType());
-            if (t == null) {
-                tag.setCreateDate(new Date());
-                dao.insert(tag);
-            }else {
-                throw new RuntimeException("该标签已存在");
+            GroupDao dao = session.getMapper(GroupDao.class);
+            // clazzdao根据id获取
+            ClazzDao cdao = session.getMapper(ClazzDao.class);
+            Clazz c=cdao.selectById(group.getClazz().getId());
+            Group g=dao.selectByNameAndCName(group.getName(),c.getName());
+            if (g == null) {
+                group.setCreateDate(new Date());
+                dao.insert(group);
+            }else{
+                throw new RuntimeException("该班级的小组已存在");
             }
             session.commit();  //只有业务里涉及到 增删改
         }catch(Exception e){

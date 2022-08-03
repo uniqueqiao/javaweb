@@ -12,4 +12,5 @@ public interface CityService {
     public void delete(Integer id);
     // 3. 添加
     public void insert(City city);
+
 }

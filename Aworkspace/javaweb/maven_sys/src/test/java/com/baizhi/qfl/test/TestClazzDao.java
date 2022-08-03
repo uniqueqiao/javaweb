@@ -21,6 +21,13 @@ public class TestClazzDao {
         DBUtil.commit();
     }
     @Test
+    public void queryByName(){
+        ClazzDao dao = (ClazzDao) DBUtil.getDao(ClazzDao.class);
+        Clazz c=dao.selectByName("2010班");
+        System.out.println(c);
+        DBUtil.commit();
+    }
+    @Test
     public void insert(){
         ClazzDao dao = (ClazzDao) DBUtil.getDao(ClazzDao.class);
         dao.insert(new Clazz(null,"2208","/a.jpg",new Tag(5,"探知源码",null,null)));

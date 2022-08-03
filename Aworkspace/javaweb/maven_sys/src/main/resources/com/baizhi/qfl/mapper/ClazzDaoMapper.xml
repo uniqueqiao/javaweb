@@ -15,6 +15,22 @@
         from t_clazz c left join t_tag t
         on c.tagId=t.id
    </select>
+    <select id="queryAll"  resultType="Clazz">
+        select id  , name ,path
+        from t_clazz
+    </select>
+    <select id="selectByName" resultMap="cl">
+        select c.id cid , c.name cname,c.path cpath, t.id tid ,t.name tname
+        from t_clazz c left join t_tag t
+        on c.tagId=t.id
+        where c.name=#{name}
+    </select>
+    <select id="selectById" resultMap="cl">
+        select c.id cid , c.name cname,c.path cpath, t.id tid ,t.name tname
+        from t_clazz c left join t_tag t
+        on c.tagId=t.id
+        where c.id=#{id}
+    </select>
     <insert id="insert" parameterType="Clazz">
         insert into t_clazz(name,path,tagId) values (#{name},#{path},#{tag.id})
     </insert>

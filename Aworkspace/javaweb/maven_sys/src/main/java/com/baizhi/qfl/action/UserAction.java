@@ -77,7 +77,7 @@ public class UserAction extends ActionSupport {
                 ServletActionContext.getRequest().getSession().setAttribute("mess", "用户已存在");
                 return "error";
             }*/
-
+            return null;
         }
     }
 }
