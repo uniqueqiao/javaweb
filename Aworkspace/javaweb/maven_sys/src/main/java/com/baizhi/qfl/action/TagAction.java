@@ -16,6 +16,24 @@ public class TagAction extends ActionSupport {
     private Tag tag;
     private List<Tag> tags;
     private Integer id;
+    public String showAllStuTag() {
+        try {
+            ///2调用Service层/业务层
+            TagServiceImpl ts = new TagServiceImpl();
+            tags = ts.queryAllStuTag();
+            System.out.println(tags);
+            //通过输出流输出list的json串形式
+            String str = JSON.toJSONString(tags);
+            ServletActionContext.getResponse().setContentType("application/json;charset=UTF-8");
+            PrintWriter out = ServletActionContext.getResponse().getWriter();
+            out.println(str);
+            return null;
+        }catch (Exception e) {
+            e.printStackTrace();//上线需要删掉
+            //底层运行出错返回的结果（跳转）
+            return null;
+        }
+    }
     public String showAllClazzTag() {
         try {
             ///2调用Service层/业务层

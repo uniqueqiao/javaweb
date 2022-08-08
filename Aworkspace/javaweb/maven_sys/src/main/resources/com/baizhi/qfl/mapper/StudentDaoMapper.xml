@@ -1,20 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.qfl.dao.StudentDao">
-   <!-- <resultMap id="rm2" type="Area">
-        <id column="aid" property="id"></id>
-        <result column="acode" property="code"></result>
-        <result column="aname" property="name"></result>
-        <association property="city" javaType="City">
-            <id column="cid" property="id"></id>
-            <result column="ccode" property="code"></result>
-            <result column="cname" property="name"></result>
-        </association>
-    </resultMap>
-    <select id="queryAreaByCtiyCode" parameterType="String" resultMap="rm2">
-        select a.id aid,a.code acode , a.name aname , c.id cid ,c.code ccode , c.name cname
-        from area a left join city c
-        on a.citycode=c.code
-        where a.citycode=#{ccode}
+   <resultMap id="stu" type="Student">
+       <id column="sid" property="id"/>
+       <result column="sname" property="name"/>
+       <result column="sage" property="age"/>
+       <result column="qq" property="qq"/>
+       <result column="phone" property="phone"/>
+       <result column="bir" property="bir"/>
+       <result column="starts" property="starts"/>
+       <result column="attr" property="attr"/>
+       <result column="mark" property="mark"/>
+       <association property="clazz" javaType="Clazz">
+           <id column="cid" property="id"/>
+           <result column="cname" property="name"/>
+       </association>
+       <association property="group" javaType="Group">
+           <id column="gid" property="id"/>
+           <result column="gname" property="name"/>
+       </association>
+       <association property="city" javaType="City">
+            <id column="cityid" property="id"/>
+            <result column="cityname" property="name"/>
+       </association>
+       <collection property="tags" ofType="Tag">
+           <id column="tid" property="id"/>
+           <result column="tname" property="name"/>
+           <result column="type" property="type"/>
+       </collection>
+   </resultMap>
+    <select id="selectStudent" parameterType="Integer" resultMap="stu">
+        select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
+               c.id cid,c.name cname,
+               g.id gid,g.name gname,
+               city.id cityid,city.name cityname,
+               t.id tid,t.name tname,t.type
+        from ( select * from t_student  order by id  limit #{begin},4) s
+        left join t_clazz c on s.clazzId=c.id
+        left join t_group g on s.groupId=g.id
+        left join t_city city on s.cityId=city.id
+        left join t_student_tag st on s.id=st.sid
+        left join t_tag t on st.tid=t.id
+    </select>
+    <select id="queryTotalRow" resultType="Integer">
+        select count(*) from t_student
+    </select>
+    <select id="selectByGroupId" resultMap="stu">
+        select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
+               c.id cid,c.name cname,
+               g.id gid,g.name gname,
+               city.id cityid,city.name cityname,
+               t.id tid,t.name tname,t.type
+        from(select * from t_student where  groupId=#{gid}) s
+
+                left join t_clazz c on s.clazzId=c.id
+                left join t_group g on s.groupId=g.id
+                left join t_city city on s.cityId=city.id
+                left join t_student_tag st on s.id=st.sid
+                left join t_tag t on st.tid=t.id
+
+    </select>
+    <!--  模糊查询  -->
+    <select id="selectByLike" resultMap="stu">
+        select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
+               c.id cid,c.name cname,
+               g.id gid,g.name gname,
+               city.id cityid,city.name cityname,
+               t.id tid,t.name tname,t.type
+        from(select * from t_student  where ${colName} like #{colValue} ) s
+
+        left join t_clazz c on s.clazzId=c.id
+        left join t_group g on s.groupId=g.id
+        left join t_city city on s.cityId=city.id
+        left join t_student_tag st on s.id=st.sid
+        left join t_tag t on st.tid=t.id
+   </select>
+    <select id="queryById" parameterType="Integer" resultMap="stu">
+        select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
+               c.id cid,c.name cname,
+               g.id gid,g.name gname,
+               city.id cityid,city.name cityname,
+               t.id tid,t.name tname,t.type
+        from(select * from t_student  where id = #{id} ) s
+
+                left join t_clazz c on s.clazzId=c.id
+                left join t_group g on s.groupId=g.id
+                left join t_city city on s.cityId=city.id
+                left join t_student_tag st on s.id=st.sid
+                left join t_tag t on st.tid=t.id
+    </select>
+    <!-- /* from ( select * from t_student where #{colName} like #{text} order by id  limit #{begin},4) s*/ -->
+    <!--<select id="queryTotalRowNameLike" resultType="Integer">
+        select count(*) from t_student where ${colName} like #{colValue}
     </select>-->
+    <delete id="deleteById" parameterType="Integer">
+        delete from t_student where id=#{id}
+    </delete>
+    <insert id="insert" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+        insert into t_student(name,age,qq,phone,bir,starts,attr,mark,clazzId,groupId,cityId)
+        values (#{name},#{age},#{qq},#{phone},#{bir},#{starts},#{attr},#{mark},#{clazz.id},#{group.id},#{city.id})
+    </insert>
+    <insert id="insertStudentTag" >
+        insert into t_student_tag(sid,tid)
+        values (#{sid},#{tid})
+    </insert>
+    <delete id="deleteStudentTag" parameterType="Integer">
+        delete  from t_student_tag
+        where sid=#{sid}
+    </delete>
+    <update id="updateById" >
+        update t_student
+        <set>    <!-- 去掉多余的， -->
+            <if test="name!=null">name=#{name},</if>
+            <if test="qq!=null">qq=#{qq},</if>
+            <if test="phone!=null"> phone=#{phone},</if>
+            <if test="mark!=null">mark = #{mark},</if>
+            <if test="clazz.id!=null">clazzId=#{clazz.id},</if>
+            <if test="group.id!=null">groupId=#{group.id},</if>
+            <if test="city.id!=null">cityId=#{city.id},</if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

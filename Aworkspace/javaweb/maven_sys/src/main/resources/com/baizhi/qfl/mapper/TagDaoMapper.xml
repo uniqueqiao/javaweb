@@ -9,6 +9,9 @@
     <select id="queryAllClazzTag"  resultType="Tag">
         select * from t_tag where type='班级'
     </select>
+    <select id="queryAllStuTag"  resultType="Tag">
+        select * from t_tag where type='学生'
+    </select>
     <select id="selectByNameAndType"  resultType="Tag">
         select * from t_tag where name=#{name} and type=#{type}
     </select>

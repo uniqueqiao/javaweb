@@ -12,6 +12,25 @@ import java.util.List;
 
 public class TagServiceImpl implements TagService{
     @Override
+    public List<Tag> queryAllStuTag() {
+        SqlSession session = null;
+        try{
+            session = DBUtil.openSession();
+            // 调用dao的方法获取省份数据
+            TagDao dao = session.getMapper(TagDao.class);
+            List<Tag> list = dao.queryAllStuTag();
+            // session.commit();  只有业务里涉及到 增删改
+            return list;
+        }catch(Exception e){
+            e.printStackTrace();
+            // session.rollback();
+            throw new RuntimeException(e.getMessage());
+        }finally{
+            DBUtil.close();
+        }
+    }
+
+    @Override
     public List<Tag> queryAllClazzTag() {
         SqlSession session = null;
         try{

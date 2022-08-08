@@ -7,7 +7,7 @@ public class User implements Serializable {
     private Integer id;//主属性
     private String username;//业务属性
     private String password;
-    private Date createDate;
+    private Date createDate=new Date();
     private String role;
     private String salt;
 

@@ -57,7 +57,7 @@ public class Tag implements Serializable {
     public Date getCreateDate() {
         return createDate;
     }
-    public String getCreateTime() {
+    /*public String getCreateTime() {
         //Date转为String yyyy-MM-dd
         //String与java.util.Date 转换 使用工具类 SimpleDateFormat---sdf
         //Date --> String
@@ -65,7 +65,7 @@ public class Tag implements Serializable {
         String s=sdf.format(createDate);
         return s;
         //String --> Date Date d=sdf.parse(String)
-    }
+    }*/
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }

@@ -4,6 +4,45 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+	<package namespace="/user" extends="struts-default" name="user">
+		<action name="LoginAction" method="login" class="com.baizhi.qfl.action.UserAction">
+			<result name="ok" type="redirect">/main/main.jsp</result>
+			<result name="error" type="redirect">/login.jsp</result>
+		</action>
+		<action name="LogoutAction" method="logout" class="com.baizhi.qfl.action.UserAction">
+			<result name="ok" type="redirect">/login.jsp</result>
+			<result name="error" type="redirect">/error.jsp</result>
+		</action>
+		<action name="RegistAction" method="regist" class="com.baizhi.qfl.action.UserAction">
+			<result name="ok" type="redirect">/login.jsp</result>
+			<result name="error" type="redirect">/regist.jsp</result>
+		</action>
+		<action name="ImageAction" method="createImage" class="com.baizhi.qfl.action.UserAction"></action>
+	</package>
+	<package namespace="/student" extends="struts-default" name="student">
+		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.StudentAction">
+			<result name="ok" type="redirect">/student/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="ShowAllLikeAction" method="queryLike" class="com.baizhi.qfl.action.StudentAction">
+			<result name="ok" type="redirect">/student/indexLike.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="ShowOneAction" method="queryById" class="com.baizhi.qfl.action.StudentAction">
+		</action>
+		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.StudentAction">
+			<result name="ok" type="redirectAction">/student/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="AddAction" method="add" class="com.baizhi.qfl.action.StudentAction">
+			<result name="ok" type="redirectAction">/student/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="UpdateAction" method="update" class="com.baizhi.qfl.action.StudentAction">
+			<result name="ok" type="redirectAction">/student/ShowAllAction</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
 	<package namespace="/clazz" extends="struts-default" name="clazz">
 		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.ClazzAction">
 			<result name="ok" type="redirect">/clazz/index.jsp</result>
@@ -25,6 +64,8 @@
 			<result name="ok" type="redirect">/group/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="ShowAllGroupAndCLazzAction" method="showAllGroupAndCLazz" class="com.baizhi.qfl.action.GroupAction">
+		</action>
 		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.GroupAction">
 			<result name="ok" type="redirectAction">/group/ShowAllAction</result>
 			<result name="error">/error.jsp</result>
@@ -38,6 +79,8 @@
 		<action name="ShowAllAction" method="showAll" class="com.baizhi.qfl.action.CityAction">
 			<result name="ok" type="redirect">/city/index.jsp</result>
 			<result name="error">/error.jsp</result>
+		</action>
+		<action name="ShowAllCityAction" method="showAllCity" class="com.baizhi.qfl.action.CityAction">
 		</action>
 		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.CityAction">
 			<result name="ok" type="redirectAction">/city/ShowAllAction</result>
@@ -55,7 +98,8 @@
 		</action>
 		<action name="ShowAllClazzTagAction" method="showAllClazzTag" class="com.baizhi.qfl.action.TagAction">
 		</action>
-
+		<action name="ShowAllStuTagAction" method="showAllStuTag" class="com.baizhi.qfl.action.TagAction">
+		</action>
 		<action name="DeleteAction" method="delete" class="com.baizhi.qfl.action.TagAction">
 			<result name="ok" type="redirectAction">/tag/ShowAllAction</result>
 			<result name="error">/error.jsp</result>

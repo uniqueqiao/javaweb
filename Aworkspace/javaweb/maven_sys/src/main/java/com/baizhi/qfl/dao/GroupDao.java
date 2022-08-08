@@ -13,6 +13,8 @@ public interface GroupDao {
     public  void insert(Group group);
     //删除
     public void delete(Integer id);
-    //根据班级和姓名查
+    //根据id查
+    public Group selectById(Integer id);
+    //根据组名和班级查
     public Group selectByNameAndCName(@Param("name") String name,@Param("cname")String cname);
 }

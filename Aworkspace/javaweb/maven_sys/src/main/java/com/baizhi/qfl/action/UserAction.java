@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpSession;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 public class UserAction extends ActionSupport {
@@ -42,7 +43,7 @@ public class UserAction extends ActionSupport {
                 UserServiceImpl us=new UserServiceImpl();
                 User user=us.Login(u);
                 HttpSession session=ServletActionContext.getRequest().getSession(true);
-                session.setAttribute("us",user);
+                session.setAttribute("user",user);
                 return "ok";
 
             }
@@ -62,22 +63,31 @@ public class UserAction extends ActionSupport {
         return "ok";
     }
     public String regist(){
-        String code = (String) ServletActionContext.getRequest().getSession().getAttribute("code");
-        System.out.println(ucode+"------------");
-        if( code.equals( ucode ) == false ) {
-            System.out.println(  "error" );
-            return "error";
-        }else {
             UserServiceImpl us=new UserServiceImpl();
-           /* User user= us.SByName(u.getUsername());
-            if(us == null){
-                us.regist(user);
+            try {
+                u.setCreateDate(new Date());
+                us.regist(u);
                 return "ok";
-            }else {
-                ServletActionContext.getRequest().getSession().setAttribute("mess", "用户已存在");
+            }catch (Exception e) {
+                e.printStackTrace();
+                ServletActionContext.getRequest().getSession().setAttribute("mess", e.getMessage());
                 return "error";
-            }*/
-            return null;
-        }
+            }
+    }
+
+    public String getUcode() {
+        return ucode;
+    }
+
+    public void setUcode(String ucode) {
+        this.ucode = ucode;
+    }
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
     }
 }

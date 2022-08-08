@@ -2,12 +2,23 @@ package com.baizhi.qfl.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 public class Group implements Serializable {
     private Integer id;//主属性
     private String name;//业务属性
     private Date createDate;
     private Clazz clazz;//关系属性
+    private Integer count;
+    private Set<String> tagsNames;
+
+    public Set<String> getTagsNames() {
+        return tagsNames;
+    }
+
+    public void setTagsNames(Set<String> tagsNames) {
+        this.tagsNames = tagsNames;
+    }
 
     public Group() {
     }
@@ -27,6 +38,14 @@ public class Group implements Serializable {
                 ", createDate=" + createDate +
                 ", clazz=" + clazz +
                 '}';
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Integer getId() {

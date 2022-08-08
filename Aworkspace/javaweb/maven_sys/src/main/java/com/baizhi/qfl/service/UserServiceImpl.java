@@ -1,16 +1,11 @@
 package com.baizhi.qfl.service;
 
-import com.baizhi.qfl.dao.TagDao;
 import com.baizhi.qfl.dao.UserDao;
-import com.baizhi.qfl.entity.Tag;
 import com.baizhi.qfl.entity.User;
 import com.baizhi.qfl.util.DBUtil;
 import com.baizhi.qfl.util.Salt;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.ibatis.session.SqlSession;
-
-import java.util.Date;
-import java.util.List;
 
 public class UserServiceImpl implements UserService{
     @Override
@@ -47,6 +42,7 @@ public class UserServiceImpl implements UserService{
                 user.setPassword(pw);
                 user.setSalt(salt);
                 dao.insert(user);
+                System.out.println(user);
             }
             session.commit();  //只有业务里涉及到 增删改
         }catch(Exception e){
@@ -66,6 +62,7 @@ public class UserServiceImpl implements UserService{
             // 调用dao的方法
             UserDao dao = session.getMapper(UserDao.class);
             User u=dao.selectByUserName(user.getUsername());
+            System.out.println(u);
             if (u == null) {
                 //System.out.println("用户不存在");
                 throw new RuntimeException("用户不存在");

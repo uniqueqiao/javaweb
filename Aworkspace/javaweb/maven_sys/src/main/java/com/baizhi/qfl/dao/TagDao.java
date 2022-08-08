@@ -10,6 +10,8 @@ import java.util.List;
 public interface TagDao {
     //异步查所有班级tag
     public List<Tag> queryAllClazzTag();
+   //异步查所有学生tag
+    public List<Tag> queryAllStuTag();
     //插入
     public  void insert(Tag tag);
     //删除

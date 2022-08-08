@@ -21,11 +21,10 @@
         select g.id gid,g.name gname,g.createDate gcreateDate,
                c.id cid,c.name cname ,c.path cpath,
                t.id tid,t.name tname ,t.type ttype,t.createDate tcreateDate
-        from t_group g left join t_clazz c
-        on g.clazzId = c.id
+        from t_group g
+        left join t_clazz c on g.clazzId = c.id
         left join t_tag t on c.tagId=t.id
     </select>
-
     <select id="selectByNameAndCName"  resultMap="gro">
         select g.id gid,g.name gname,g.createDate gcreateDate,
                c.id cid,c.name cname ,c.path cpath,
@@ -34,6 +33,15 @@
         on g.clazzId = c.id
         left join t_tag t on c.tagId=t.id
         where g.name=#{name} and c.name=#{cname}
+    </select>
+    <select id="selectById"  resultMap="gro">
+        select g.id gid,g.name gname,g.createDate gcreateDate,
+               c.id cid,c.name cname ,c.path cpath,
+               t.id tid,t.name tname ,t.type ttype,t.createDate tcreateDate
+        from t_group g left join t_clazz c
+        on g.clazzId = c.id
+        left join t_tag t on c.tagId=t.id
+        where g.id=#{id}
     </select>
     <insert id="insert" parameterType="Group">
         insert into t_group(name,createDate,clazzId) values (#{name},#{createDate},#{clazz.id})

@@ -1,6 +1,7 @@
 package com.baizhi.qfl.action;
 
 
+import com.alibaba.fastjson.JSON;
 import com.baizhi.qfl.entity.Group;
 import com.baizhi.qfl.service.GroupService;
 import com.baizhi.qfl.service.GroupServiceImpl;
@@ -8,12 +9,30 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class GroupAction extends ActionSupport {
     private Group g;
     private List<Group> groups;
     private Integer id;
+    public String showAllGroupAndCLazz() {
+        try {
+            ///2调用Service层/业务层 实现登录
+            GroupService gs =new GroupServiceImpl();
+            groups= gs.getAllGroupAndCLazz();
+            //通过输出流输出list的json串形式
+            String str = JSON.toJSONString(groups);
+            ServletActionContext.getResponse().setContentType("application/json;charset=UTF-8");
+            PrintWriter out = ServletActionContext.getResponse().getWriter();
+            out.println(str);
+            return null;
+        }catch (Exception e) {
+            e.printStackTrace();//上线需要删掉
+            //底层运行出错返回的结果（跳转）
+            return null;
+        }
+    }
    public String showAll() {
         try {
             ///2调用Service层/业务层 实现登录

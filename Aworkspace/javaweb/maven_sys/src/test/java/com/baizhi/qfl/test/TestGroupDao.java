@@ -29,10 +29,17 @@ public class TestGroupDao {
         DBUtil.commit();
     }
     @Test
+    public void queryById(){
+        GroupDao dao = (GroupDao) DBUtil.getDao(GroupDao.class);
+        Group g= dao.selectById(5);
+        System.out.println(g);
+        DBUtil.commit();
+    }
+    @Test
     public void insert(){
         GroupDao dao = (GroupDao) DBUtil.getDao(GroupDao.class);
-        Group g=new Group(null,"222",new Date(),new Clazz(13,"2013班",null,null));
-        dao.insert(g);
+        //Group g=new Group(null,"222",new Date(),new Clazz(13,"2013班",null,null));
+        //dao.insert(g);
         DBUtil.commit();
     }
     @Test

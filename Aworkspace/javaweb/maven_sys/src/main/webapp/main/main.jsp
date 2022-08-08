@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>main</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/statics/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css">
 </head>
 <frameset rows="10%,*" frameborder="no" border="1">
     <frame src="head.jsp" />

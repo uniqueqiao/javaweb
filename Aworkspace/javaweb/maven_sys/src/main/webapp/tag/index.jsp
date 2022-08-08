@@ -48,7 +48,7 @@
                             <tr>
                                 <td>${tag.id}</td>
                                 <td>${tag.name}</td>
-                                <td>${tag.createTime}</td>
+                                <td><fmt:formatDate value="${tag.createDate}" pattern="yyyy-MM-dd"/></td>
                                 <td>
                                     <c:if test="${tag.type=='学生'}">
                                         <span class="label label-warning">${tag.type}</span>

@@ -14,12 +14,12 @@
         <div class="col-sm-12">
             <ul class="list-group">
                 <li class="list-group-item"><a href="${pageContext.request.contextPath}/student/ShowAllAction" target="main">学生管理</a></li>
-                <%--<c:if test="${sessionScope.user.role=='admin'}">--%>
+                <c:if test="${sessionScope.user.role=='admin'}">
                     <li class="list-group-item"><a href="${pageContext.request.contextPath}/group/ShowAllAction" target="main">小组管理</a></li>
                     <li class="list-group-item"><a href="${pageContext.request.contextPath}/clazz/ShowAllAction" target="main">班级管理</a></li>
                     <li class="list-group-item"><a href="${pageContext.request.contextPath}/tag/ShowAllAction" target="main">标签管理</a></li>
                     <li class="list-group-item"><a href="${pageContext.request.contextPath}/city/ShowAllAction" target="main">城市管理</a></li>
-                <%--</c:if>--%>
+                </c:if>
             </ul>
         </div>
     </div>

@@ -1,6 +1,8 @@
 package com.baizhi.qfl.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Student implements Serializable {
     private Clazz clazz;//关系属性
     private Group group;
     private City city;
-    private List<Tag> tags;
+    private List<Tag> tags=new ArrayList<>();
 
     public Student() {
     }
@@ -159,5 +161,14 @@ public class Student implements Serializable {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+    public String getBirthday() {
+        //Date转为String yyyy-MM-dd
+        //String与java.util.Date 转换 使用工具类 SimpleDateFormat---sdf
+        //Date --> String
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String s=sdf.format(bir);
+        return s;
+        //String --> Date Date d=sdf.parse(String)
     }
 }

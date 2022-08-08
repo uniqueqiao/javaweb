@@ -36,6 +36,16 @@ public class TestTagDao {
         DBUtil.commit();
     }
     @Test
+    public void queryAllStu(){
+        TagDao dao = (TagDao) DBUtil.getDao(TagDao.class);
+        List<Tag> list=dao.queryAllStuTag();
+        for (Tag t : list) {
+            System.out.println(t);
+        }
+        DBUtil.commit();
+    }
+
+    @Test
     public void delete(){
         TagDao dao = (TagDao) DBUtil.getDao(TagDao.class);
         dao.delete(20);

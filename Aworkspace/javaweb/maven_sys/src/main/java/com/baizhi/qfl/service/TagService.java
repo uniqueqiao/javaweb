@@ -8,6 +8,8 @@ import java.util.List;
 public interface TagService {
     //异步查所有班级tag
     public List<Tag> queryAllClazzTag();
+    //异步查所有学生tag
+    public List<Tag> queryAllStuTag();
     // 1. 查所有
     public List<Tag> getAll();
     // 2.删除

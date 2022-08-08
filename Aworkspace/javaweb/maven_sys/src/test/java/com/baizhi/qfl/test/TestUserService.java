@@ -18,6 +18,11 @@ public class TestUserService {
         us.regist(new User(null,"qfl","111",new Date(),"admin",null));
     }
     @Test
+    public void insert2(){
+        UserService us=new UserServiceImpl();
+        us.regist(new User(null,"stu","111",new Date(),"student",null));
+    }
+    @Test
     public void login(){
          UserService us=new UserServiceImpl();
          User user = new User(null,"qfl","111",null,"admin","null");

@@ -9,6 +9,25 @@ import java.util.List;
 
 public class CityServiceImpl implements CityService{
     @Override
+    public List<City> getAllCity() {
+        SqlSession session = null;
+        try{
+            session = DBUtil.openSession();
+            // 调用dao的方法获取省份数据
+            CityDao dao = session.getMapper(CityDao.class);
+            List<City> list = dao.selectAll();
+            // session.commit();  只有业务里涉及到 增删改
+            return list;
+        }catch(Exception e){
+            e.printStackTrace();
+            // session.rollback();
+            throw new RuntimeException(e.getMessage());
+        }finally{
+            DBUtil.close();
+        }
+    }
+
+    @Override
     public List<City> getAll() {
         SqlSession session = null;
         try{
