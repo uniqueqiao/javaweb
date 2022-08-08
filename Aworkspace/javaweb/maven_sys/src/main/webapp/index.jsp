@@ -33,24 +33,6 @@
 <script src="${pageContext.request.contextPath}/statics/js/echarts.min.js"></script>
 <script src="${pageContext.request.contextPath}/statics/js/jquery-1.8.3.min.js"></script>
 <script>
-    $(function(){
-        var timeRef;
-
-        //自动刷新
-        $("#refresh").click(function(){
-            timeRef =  setInterval(function () {
-                showClazzAndTag();
-           },3000);
-        });
-
-        //自动关闭
-        $("#close").click(function () {
-            clearInterval(timeRef);
-        })
-
-    })
-</script>
-<script>
     var clazzChart = echarts.init(document.getElementById('clazzChart'),'light');
     var tagType = echarts.init(document.getElementById('tagType'),'light');
 

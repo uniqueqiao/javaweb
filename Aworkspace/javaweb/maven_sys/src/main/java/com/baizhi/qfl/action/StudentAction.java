@@ -2,10 +2,7 @@ package com.baizhi.qfl.action;
 
 
 import com.alibaba.fastjson.JSON;
-import com.baizhi.qfl.entity.Group;
 import com.baizhi.qfl.entity.Student;
-import com.baizhi.qfl.service.GroupService;
-import com.baizhi.qfl.service.GroupServiceImpl;
 import com.baizhi.qfl.service.StudentService;
 import com.baizhi.qfl.service.StudentServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
@@ -42,7 +39,7 @@ public class StudentAction extends ActionSupport {
             ///2调用Service层/业务层
             StudentService ss =new StudentServiceImpl();
             stu=ss.getStudentById(id);
-            System.out.println(stu);
+            //System.out.println(stu);
             ServletActionContext.getRequest().getSession().setAttribute("Astudent", stu);
             //通过输出流输出list的json串形式
             String str = JSON.toJSONStringWithDateFormat(stu,"yyyy-MM-dd");

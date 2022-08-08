@@ -37,6 +37,7 @@ public class UserAction extends ActionSupport {
             System.out.println(ucode+"------------");
             if( code.equals( ucode ) == false ) {
                 System.out.println(  "error"       );
+                ServletActionContext.getRequest().getSession().setAttribute("mess", "验证码输入有误");
                 return "error";
             }else{
                 //2调用Service层/业务层 实现登录
