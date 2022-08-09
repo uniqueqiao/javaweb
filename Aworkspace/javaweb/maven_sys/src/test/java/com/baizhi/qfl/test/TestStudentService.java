@@ -23,7 +23,7 @@ public class TestStudentService {
     @Test
     public void queryLike(){
         StudentService ss =new StudentServiceImpl();
-        List<Student> list= ss.getStudentLike("name","yan" );
+        List<Student> list= ss.getStudentLike(0,"name","yan" );
         for (Student s : list) {
             System.out.println(s);
         }

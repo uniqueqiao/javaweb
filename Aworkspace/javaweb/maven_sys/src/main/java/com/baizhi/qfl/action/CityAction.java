@@ -58,7 +58,7 @@ public class CityAction extends ActionSupport {
         } catch (Exception e) {
             e.printStackTrace();
             HttpSession session = ServletActionContext.getRequest().getSession(true);
-            session.setAttribute("mess", "操作错误");
+            session.setAttribute("mess", "操作错误"+e.getMessage());
             return "error";
         }
     }

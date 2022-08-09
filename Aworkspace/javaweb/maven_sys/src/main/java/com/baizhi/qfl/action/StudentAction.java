@@ -56,20 +56,22 @@ public class StudentAction extends ActionSupport {
     }
     public String queryLike(){
         try {
-            /*String num= ServletActionContext.getRequest().getParameter("pn");
+            String num= ServletActionContext.getRequest().getParameter("pn");
             if (num == null) {
                 num="1";
             }
-            int pn=Integer.parseInt(num);*/
+            int pn=Integer.parseInt(num);
             ///2调用Service层/业务层
             StudentService ss =new StudentServiceImpl();
-            students=ss.getStudentLike(colName, colValue);
-            //int totalPage=ss.getTotalPage();
+            students=ss.getStudentLike(pn,colName, colValue);
+            int totalPage=ss.getTotalPageLike(colName, colValue);
             //利用session设置命名属性(不可重复)
             HttpSession session= ServletActionContext.getRequest().getSession(true);
             session.setAttribute("list",students);
-            /*session.setAttribute("totalPage", totalPage);
-            session.setAttribute("pn", pn);*/
+            session.setAttribute("totalPage", totalPage);
+            session.setAttribute("pn", pn);
+            session.setAttribute("colName",colName);
+            session.setAttribute("colValue",colValue);
             return "ok";
         }catch (Exception e) {
             e.printStackTrace();

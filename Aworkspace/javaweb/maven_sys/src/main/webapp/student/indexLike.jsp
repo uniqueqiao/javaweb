@@ -32,7 +32,7 @@
                         <option value="phone">手机</option>
                         <option value="qq">QQ</option>
                     </select>
-                    <input type="text" class="form-control" name="colValue" style="height: 30px; width: 300px;">
+                    <input type="text" class="form-control" name="colValue" placeholder="${sessionScope.colValue}"<%--value="${sessionScope.colValue}"--%> style="height: 30px; width: 300px;">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-sm">搜索</button>
@@ -42,7 +42,7 @@
     <div class="row" style="margin-top: 15px;height: 300px">
         <c:if test="${sessionScope.user.role=='admin'}">
             <div class="col-sm-12" style="margin-bottom: 10px;">
-                <a href="${pageContext.request.contextPath}/student/add.jsp" class="btn btn-sm btn-success">添加学生信息</a>
+                <a href="${pageContext.request.contextPath}/student/ShowAllAction" class="btn btn-sm btn-success">所有学生信息</a>
             </div>
         </c:if>
         <div class="col-sm-12">
@@ -94,8 +94,8 @@
         </div>
     </div>
 
-    <%--<c:if test="${sessionScope.totalpage!=0}">
-        &lt;%&ndash;分页&下载&ndash;%&gt;
+    <c:if test="${sessionScope.totalpage!=0}">
+        <%--分页&下载--%>
         <div class="row">
             <div class="col-sm-8">
             </div>
@@ -104,7 +104,7 @@
                     <ul class="pagination">
                         <c:if test="${sessionScope.pn!=1}">
                             <li>
-                                <a href="${pageContext.request.contextPath}/student/ShowAllAction?pn=${sessionScope.pn-1}"
+                                <a href="${pageContext.request.contextPath}/student/ShowAllLikeAction?pn=${sessionScope.pn-1}&colName=${sessionScope.colName}&colValue=${sessionScope.colValue}"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
@@ -112,12 +112,12 @@
                         </c:if>
                         <c:forEach var="i" begin="1" end="${sessionScope.totalPage}" varStatus="sta">
                             <li>
-                                <a <c:if test="${sessionScope.pn==i}">style="color: red"</c:if> href="${pageContext.request.contextPath}/student/ShowAllAction?pn=${i}">${i}</a>
+                                <a <c:if test="${sessionScope.pn==i}">style="color: red"</c:if> href="${pageContext.request.contextPath}/student/ShowAllLikeAction?pn=${i}&colName=${sessionScope.colName}&colValue=${sessionScope.colValue}">${i}</a>
                             </li>
                         </c:forEach>
                         <c:if test="${sessionScope.pn!=sessionScope.totalPage}">
                             <li>
-                                <a href="${pageContext.request.contextPath}/student/ShowAllAction?pn=${sessionScope.pn+1}"
+                                <a href="${pageContext.request.contextPath}/student/ShowAllLikeAction?pn=${sessionScope.pn+1}&colName=${sessionScope.colName}&colValue=${sessionScope.colValue}"
                                    aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
@@ -127,7 +127,7 @@
                 </nav>
             </div>
         </div>
-    </c:if>--%>
+    </c:if>
 </div>
 </body>
 </html>

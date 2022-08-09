@@ -79,6 +79,13 @@ public class GroupServiceImpl implements GroupService{
             session = DBUtil.openSession();
             // 调用dao的方法
             GroupDao dao = session.getMapper(GroupDao.class);
+            StudentDao sdao=session.getMapper(StudentDao.class);
+            List<Student> list = sdao.selectByGroupId(id);
+            if (list.size() != 0) {
+                throw new RuntimeException("该小组有关联用户，不能删除");
+            }else {
+                dao.delete(id);
+            }
             dao.delete(id);
             session.commit();  //只有业务里涉及到 增删改
         }catch(Exception e){

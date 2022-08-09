@@ -58,6 +58,33 @@
                 left join t_city city on s.cityId=city.id
                 left join t_student_tag st on s.id=st.sid
                 left join t_tag t on st.tid=t.id
+    </select>
+    <select id="selectByClazzId" resultMap="stu">
+        select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
+               c.id cid,c.name cname,
+               g.id gid,g.name gname,
+               city.id cityid,city.name cityname,
+               t.id tid,t.name tname,t.type
+        from(select * from t_student where  clazzId=#{cid}) s
+                left join t_clazz c on s.clazzId=c.id
+                left join t_group g on s.groupId=g.id
+                left join t_city city on s.cityId=city.id
+                left join t_student_tag st on s.id=st.sid
+                left join t_tag t on st.tid=t.id
+    </select>
+    <select id="selectByCityId" parameterType="Integer" resultMap="stu">
+        select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
+               c.id cid,c.name cname,
+               g.id gid,g.name gname,
+               city.id cityid,city.name cityname,
+               t.id tid,t.name tname,t.type
+        from(select * from t_student where  cityId=#{cid}) s
+
+                left join t_clazz c on s.clazzId=c.id
+                left join t_group g on s.groupId=g.id
+                left join t_city city on s.cityId=city.id
+                left join t_student_tag st on s.id=st.sid
+                left join t_tag t on st.tid=t.id
 
     </select>
     <!--  模糊查询  -->
@@ -67,7 +94,7 @@
                g.id gid,g.name gname,
                city.id cityid,city.name cityname,
                t.id tid,t.name tname,t.type
-        from(select * from t_student  where ${colName} like #{colValue} ) s
+        from(select * from t_student  where ${colName} like #{colValue} order by id limit #{begin},4) s
 
         left join t_clazz c on s.clazzId=c.id
         left join t_group g on s.groupId=g.id
@@ -75,6 +102,9 @@
         left join t_student_tag st on s.id=st.sid
         left join t_tag t on st.tid=t.id
    </select>
+    <select id="queryTotalRowNameLike" resultType="Integer">
+        select count(*) from t_student where ${colName} like #{colValue}
+    </select>
     <select id="queryById" parameterType="Integer" resultMap="stu">
         select s.id sid, s.name sname,s.age sage,s.qq,s.phone,s.bir,s.starts,s.attr,s.mark,
                c.id cid,c.name cname,
@@ -82,17 +112,13 @@
                city.id cityid,city.name cityname,
                t.id tid,t.name tname,t.type
         from(select * from t_student  where id = #{id} ) s
-
                 left join t_clazz c on s.clazzId=c.id
                 left join t_group g on s.groupId=g.id
                 left join t_city city on s.cityId=city.id
                 left join t_student_tag st on s.id=st.sid
                 left join t_tag t on st.tid=t.id
     </select>
-    <!-- /* from ( select * from t_student where #{colName} like #{text} order by id  limit #{begin},4) s*/ -->
-    <!--<select id="queryTotalRowNameLike" resultType="Integer">
-        select count(*) from t_student where ${colName} like #{colValue}
-    </select>-->
+
     <delete id="deleteById" parameterType="Integer">
         delete from t_student where id=#{id}
     </delete>
@@ -105,8 +131,12 @@
         values (#{sid},#{tid})
     </insert>
     <delete id="deleteStudentTag" parameterType="Integer">
-        delete  from t_student_tag
+        delete from t_student_tag
         where sid=#{sid}
+    </delete>
+    <delete id="deleteStudentATag" parameterType="Integer">
+        delete from t_student_tag
+        where tid=#{tid}
     </delete>
     <update id="updateById" >
         update t_student
@@ -117,7 +147,7 @@
             <if test="mark!=null">mark = #{mark},</if>
             <if test="clazz.id!=null">clazzId=#{clazz.id},</if>
             <if test="group.id!=null">groupId=#{group.id},</if>
-            <if test="city.id!=null">cityId=#{city.id},</if>
+            cityId=#{city.id}
         </set>
         where id = #{id}
     </update>

@@ -2,8 +2,10 @@ package com.baizhi.qfl.service;
 
 import com.baizhi.qfl.dao.CityDao;
 import com.baizhi.qfl.dao.ClazzDao;
+import com.baizhi.qfl.dao.StudentDao;
 import com.baizhi.qfl.entity.City;
 import com.baizhi.qfl.entity.Clazz;
+import com.baizhi.qfl.entity.Student;
 import com.baizhi.qfl.util.DBUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -93,7 +95,14 @@ public class ClazzServiceImpl implements ClazzService{
             session = DBUtil.openSession();
             // 调用dao的方法
             ClazzDao dao = session.getMapper(ClazzDao.class);
-            dao.delete(id);
+            StudentDao sdao=session.getMapper(StudentDao.class);
+            List<Student> list=sdao.selectByClazzId(id);
+            if (list.size() != 0) {
+                throw new RuntimeException("该班级有关联用户，不能删除");
+            }else{
+
+                dao.delete(id);
+            }
             session.commit();  //只有业务里涉及到 增删改
         }catch(Exception e){
             e.printStackTrace();

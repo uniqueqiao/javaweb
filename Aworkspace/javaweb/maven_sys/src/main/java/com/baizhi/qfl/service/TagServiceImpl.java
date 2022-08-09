@@ -1,6 +1,7 @@
 package com.baizhi.qfl.service;
 
 import com.baizhi.qfl.dao.CityDao;
+import com.baizhi.qfl.dao.StudentDao;
 import com.baizhi.qfl.dao.TagDao;
 import com.baizhi.qfl.entity.City;
 import com.baizhi.qfl.entity.Tag;
@@ -75,6 +76,8 @@ public class TagServiceImpl implements TagService{
             session = DBUtil.openSession();
             // 调用dao的方法
             TagDao dao = session.getMapper(TagDao.class);
+            StudentDao sdao=session.getMapper(StudentDao.class);
+            sdao.deleteStudentATag(id);
             dao.delete(id);
             session.commit();  //只有业务里涉及到 增删改
         }catch(Exception e){

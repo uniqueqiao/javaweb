@@ -100,7 +100,7 @@
                 <div class="form-group">
                     <label>备注:</label>
                         <div id="div1"></div>
-                        <input type="text" name="mark" style="display: none;" id="markContent"/>
+                        <input type="text" name="stu.mark" style="display: none;" id="markContent"/>
                 </div>
                 <button type="submit" class="btn btn-info btn-block btn-sm">保存学生信息</button>
             </form>
@@ -114,5 +114,8 @@
     const E = window.wangEditor
     const editor = new E('#div1');
     editor.config.height = 250;
-    editor.create()
+    editor.config.onchange=function (newHtml) {
+        document.getElementById("markContent").value=newHtml;
+    };
+    editor.create();
 </script>

@@ -23,13 +23,19 @@ public interface StudentDao {
     //4.3查有几行数据
     public int queryTotalRow();
     //5：根据姓名： 模糊
-    public List<Student> selectByLike(@Param("colName")String colName,@Param("colValue")String colValue);
+    public List<Student> selectByLike(@Param("begin") Integer begin,@Param("colName")String colName,@Param("colValue")String colValue);
     //5.1查有几行数据
-    public int queryTotalRowNameLike(String name);
+    public int queryTotalRowNameLike(@Param("colName")String colName,@Param("colValue")String colValue);
     //6. 根据id 异步查
     public Student queryById(Integer id);
     //7. 查班级-小组的count
     public List<Student> selectByGroupId(@Param("gid")Integer gid );
+    //8. 根据城市id查student
+    public List<Student> selectByCityId(Integer cid );
+    //9.根据班级id查Student
+    public List<Student> selectByClazzId(Integer cid );
+    //10. 根据tagID删除student_tag 表的内容
+    public void deleteStudentATag(Integer tid);
 
 
 }

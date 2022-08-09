@@ -46,7 +46,7 @@ public class TestStudentDao {
     @Test
     public void queryByName(){
         StudentDao dao = (StudentDao) DBUtil.getDao(StudentDao.class);
-        List<Student> list = dao.selectByLike("name", "%yan%");
+        List<Student> list = dao.selectByLike(0,"name", "%yan%");
         for (Student student : list) {
             System.out.println(student);
         }
@@ -55,7 +55,7 @@ public class TestStudentDao {
     @Test
     public void queryNameRow(){
         StudentDao dao = (StudentDao) DBUtil.getDao(StudentDao.class);
-        int row=dao.queryTotalRowNameLike("%ee%");
+        int row=dao.queryTotalRowNameLike("name","%ee%");
         System.out.println(row);
         DBUtil.commit();
     }

@@ -75,6 +75,9 @@
 							var id=result.tags[i].id;
 							$("#tag input[value="+id+"]").prop("checked",true);
 						}
+						//mark
+						$("input[name='stu.mark']").val(result.mark );
+						/*$("#div1").append().html(result.mark );*/
 					},
 					"json"
 			);
@@ -94,10 +97,6 @@
 					<label>名称:</label>
 					<input type="text" name="stu.name" value="" class="form-control"/>
 				</div>
-<%--				<div class="form-group">
-					<label>生日:</label>
-					<input type="text" readonly name="stu.bir" value="${sessionScope.Astudent.birthday}"  class="form-control" >
-				</div>--%>
 				<div class="form-group">
 					<label>QQ:</label>
 					<input type="text" name="stu.qq" value="" class="form-control" />
@@ -127,10 +126,10 @@
 				</div>
 				<div class="form-group">
 					<label>备注:</label>
-					<div id="div1" name="stu.mark">
+					<div id="div1">
 
 					</div>
-					<input name="mark" style="display: none;" id="markContent"/>
+					<input type="text" name="stu.mark" <%--style="display: none;"--%>class="form-control"  id="markContent"/>
 				</div>
 				<button type="submit" class="btn btn-info btn-block btn-sm">保存学生信息</button>
 			</form>
@@ -139,7 +138,7 @@
 </div>
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
+<%--<script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
 <script type="text/javascript">
 	const E = window.wangEditor
 	const editor = new E('#div1');
@@ -147,5 +146,5 @@
 	editor.config.onchange = function (newHtml) {
 		document.getElementById("markContent").value = newHtml;
 	};
-	editor.create()
-</script>
+	editor.create();
+</script>--%>

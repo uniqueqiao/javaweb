@@ -72,16 +72,15 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public List<Student> getStudentLike(String colName,String text ) {
+    public List<Student> getStudentLike(int pn,String colName,String text ) {
         SqlSession session = null;
         try{
             session = DBUtil.openSession();
             // 调用dao的方法获取省份数据
             StudentDao dao = session.getMapper(StudentDao.class);
-            /*int begin=(pn-1)*4;
-            List<Student> list = dao.selectStudent(begin);*/
+            int begin=(pn-1)*4;
             String key="%"+text+"%";
-            List<Student> list = dao.selectByLike(colName,key );
+            List<Student> list = dao.selectByLike(begin,colName,key );
             // session.commit();  只有业务里涉及到 增删改
             return list;
         }catch(Exception e){
@@ -195,44 +194,29 @@ public class StudentServiceImpl implements StudentService{
         }
 
     }
-/* @Override
-    public void delete(Integer id) {
+
+    @Override
+    public int getTotalPageLike(String colName, String text) {
         SqlSession session = null;
         try{
             session = DBUtil.openSession();
-            // 调用dao的方法
-            CityDao dao = session.getMapper(CityDao.class);
-            dao.delete(id);
-            session.commit();  //只有业务里涉及到 增删改
+            // 调用dao的方法获取省份数据
+            StudentDao dao = session.getMapper(StudentDao.class);
+            //计算起始行数
+            String key="%"+text+"%";
+            int total=dao.queryTotalRowNameLike(colName, key);
+            int totalPage=total/4;
+            if (total%4!=0) {
+                totalPage+=1;
+            }
+            return totalPage;
+            // session.commit();  只有业务里涉及到 增删改
         }catch(Exception e){
             e.printStackTrace();
-            session.rollback();
+            // session.rollback();
             throw new RuntimeException(e.getMessage());
         }finally{
             DBUtil.close();
         }
     }
-
-    @Override
-    public void insert(City city) {
-        SqlSession session = null;
-        try{
-            session = DBUtil.openSession();
-            // 调用dao的方法
-            CityDao dao = session.getMapper(CityDao.class);
-            City c=dao.selectByName(city.getName());
-            if (c == null) {
-                dao.insert(city);
-            }else{
-                throw new RuntimeException("该城市已存在");
-            }
-            session.commit();  //只有业务里涉及到 增删改
-        }catch(Exception e){
-            e.printStackTrace();
-            session.rollback();
-            throw new RuntimeException(e.getMessage());
-        }finally{
-            DBUtil.close();
-        }
-    }*/
 }

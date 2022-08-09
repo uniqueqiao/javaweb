@@ -16,7 +16,9 @@ public interface StudentService {
     //4. 添加 id
     public void insert(Student stu,List<Integer> tids);
     // 5. 模糊查所有
-    public List<Student> getStudentLike(String colName,String text);
+    public List<Student> getStudentLike(int pn,String colName,String text);
+    //5.2获取总页数
+    public int getTotalPageLike(String colName,String text);
     // 6. 异步根据id查
     public Student getStudentById(Integer id);
     // 7.更新
