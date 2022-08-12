@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 每个bean标签会在默认情况下会创建对象
+     spring 会在工厂启动时创建class代表的对象 并且可以通过id获得到这个对象
+     class是类的全限定名（不能是接口、抽象类）
+	 id是被创建的对象的唯一标识，也被称为bean的name（bean的名字）
+		-->
+    <bean id="person" class="com.baizhi.qfl.entity.Person">
+        <property name="name" value="zs"/>
+        <property name="age" value="17"/>
+        <property name="bir" value="1999/07/27 "/>
+    </bean>
+    <bean id="abc" class="com.baizhi.qfl.entity.Abc" scope="prototype"/>
+    <!-- （3）bean标签以单例模式声明创建这个UserDao对象。 -->
+    <bean id="userdao" class="com.baizhi.qfl.dao.UserDaoHWImpl"/>
+    <!-- （4）然后分别使用SET注入和自动注入向其中注入第（3）小题创建的UserDao对象。 -->
+    <!-- SET注入 -->
+    <bean id="userServiceSet" class="com.baizhi.qfl.service.UserServiceImpl">
+        <property name="name" value="userServiceSet_name"></property>
+        <property name="udh" ref="userdao"/>
+    </bean>
+    <!-- 自动注入 byType-->
+    <!--<bean id="userServiceSetAuto" class="com.baizhi.qfl.service.UserServiceImpl" autowire="byType">
+        <property name="name" value="userServiceSet_name_auto"></property>
+    </bean>-->
+    <!-- 自动注入 byName-->
+    <bean id="udh" class="com.baizhi.qfl.dao.UserDaoHWImpl"/>
+    <bean id="userServiceSetAutoName" class="com.baizhi.qfl.service.UserServiceImpl" autowire="byName">
+        <property name="name" value="userServiceSet_name_autoName"></property>
+    </bean>
+</beans>

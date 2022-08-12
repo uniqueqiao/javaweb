@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 每个bean标签会在默认情况下会创建对象
+     spring 会在工厂启动时创建class代表的对象 并且可以通过id获得到这个对象
+     class是类的全限定名（不能是接口、抽象类）
+	 id是被创建的对象的唯一标识，也被称为bean的name（bean的名字）
+		-->
+    <bean class="com.baizhi.qfl.dao.UserDaoImpl" id="ud"/>
+   <!--<bean id="userService"  class="com.baizhi.qfl.service.TestServiceImplAuto" autowire="byType">
+        <property name="name" value="zsauto"/>
+   &lt;!&ndash;     <property name="userDao" ref="dao"/>&ndash;&gt;
+    </bean>-->
+    <bean id="userService"  class="com.baizhi.qfl.service.TestServiceImplAuto" autowire="byName"/>
+</beans>
