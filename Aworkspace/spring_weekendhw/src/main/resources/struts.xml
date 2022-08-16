@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+		"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package namespace="/user" extends="struts-default" name="user">
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<action name="ShowAllAction" method="showAll" class="userAction">
+			<result name="success" type="redirect">/showAll.jsp</result>
+		</action>
+		<action name="AddAction" method="add" class="userAction">
+			<result name="success" type="redirectAction">ShowAllAction</result>
+		</action>
+	</package>
+</struts>
