@@ -1,0 +1,19 @@
+<%@page contentType="text/html;charset=UTF-8" %>
+<%@page pageEncoding="UTF-8" %>
+<%@page import="java.util.* , java.io.* " %>
+<%@page isELIgnored="false" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
+    <head>
+        <title>NameANDBir页面</title>
+    </head>
+    <body>
+    <form action="${pageContext.request.contextPath}/user/info2">
+        <input type="text" name="username"/><br>
+        <input type="date" name="bir"/><br>
+        <input type="submit" value="提交"><br>
+        <span style="color: red">${requestScope.errorMess}</span>
+    </form>
+
+    </body>
+</html>
