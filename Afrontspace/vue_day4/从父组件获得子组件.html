@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.2.6.12.js"></script>
+</head>
+<body>
+
+    <div id="app">
+       <c1 ref="c2"></c1>
+        <button type="button" @click="test">按钮</button>
+    </div>
+
+    <script>
+        let c1={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+            <div style="border: 1px solid blue">
+            <input type="text" v-model="message">{{text}}
+</div>
+            `,
+            data(){
+                return {
+                    message:"",
+                    text:""
+                }
+
+            },
+            methods:{
+                test1(){
+                    console.log("子组件test1方法")
+                }
+
+            }
+
+        }
+        new Vue({
+            el:"#app",
+            components:{
+                c1
+            },
+            data:{
+                nums:[1,2,3,4,5]
+            },
+            methods: {
+               test(){
+                    const c2=this.$refs["c2"]
+                   console.log(c2.message)
+                   c2.test1()
+                   c2.text="测试"
+               }
+            }
+        })
+    </script>
+</body>
+</html>

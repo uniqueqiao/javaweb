@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.2.6.12.js"></script>
+<!--
+    <script src="http://cdn.jsdeliver.net/npm/vue@2/dist/vue.js"></script>
+-->
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model.number="a">
+    +
+    <input type="text" v-model.number="b">
+    =
+    <!--使用computed中的属性和使用data里属性的一模一样，同样也可以在指令值中使用-->
+    <span>{{result}}</span>
+</div>
+<script>
+    let app = new Vue({
+        el:"#app",
+        data:{
+            a:0,
+            b:0
+        },
+        computed:{
+            result(){
+                //当result这个计算属性依赖的响应式数据发生变化时，这个函数会自动重新运行，并更新页面
+                return this.a + this.b
+            }
+        }
+    });
+</script>
+<script>
+    let a="test"
+    a = a.toUpperCase()
+    console.log(a)
+</script>
+</body>
+</html>

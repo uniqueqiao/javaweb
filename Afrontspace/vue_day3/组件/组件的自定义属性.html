@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <c1 a="hello"></c1>
+        <c1 a="world"></c1>
+        <c1 a="vue"></c1>
+
+    </div>
+
+    <script>
+        // 写个js对象，里面至少提供一个template属性，就形成了组件选项对象
+        //当这个组件选项对象注册到vue对象中之后，自己也变成了一个vue对象
+        let c1={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+            <div>{{a}}</div>
+            `,
+            props:["a"]
+        }
+        new Vue({
+            el:"#app",
+            components:{
+                //子组件
+              c1
+            },
+        })
+        function test(a,b) {
+            console.log(a)
+            console.log(b)
+            console.log(a+b)
+        }
+    </script>
+</body>
+</html>

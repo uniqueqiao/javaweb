@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+    <script src="../vue-router.3.5.1.js"></script>
+    <script src="../es6-promise.auto.min.js"></script>
+    <script src="../axios.0.20.0.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/">去首页</router-link>|
+        <router-link to="/add">添加用户页</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const instance=axios.create({
+            baseURL:"http://127.0.0.1:8989"
+        })
+        // 多个组件
+        let c1={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+                <div style="border: 1px solid blue">
+                    <h2>c1</h2>
+                   <router-link to="/c2?name=qfl?age=22">name:qfl,age:22</router-link>
+                </div>
+            `,
+        }
+        let c2={
+            template:`
+            <div style="border: 1px solid pink">
+              <h2>c2</h2>
+              {{$route.query.name}}--{{$route.query.age}}
+            </div>
+            `,
+        }
+        //配置组件和url的映射关系
+        const router=new VueRouter({
+            routes:[
+                {path:"/",component:c1},
+                {path:"/c2",component:c2}
+            ]
+        })
+        new Vue({
+            el:"#app",
+            router
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.2.6.12.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <h1>{{message}}</h1>
+    <!--v-html 替换标签体 且按照html语法做解析并展示到标签体中，innerHTML-->
+    <!--v-text 替换标签体 直接替换，不做解析直接展示标签体，innerText-->
+    <h1 v-html="message"></h1>
+    <h1 v-text="message"></h1>
+</div>
+
+<script>
+    /*创建vue时，需要传入一个选项对象
+    * Vue的构造函数会根据这个选项对象来创建Vue实例对象*/
+    new Vue({
+        el:"#app",//标签选择器 只能选一个且不能是html body
+        data:{
+            message:"<h1>hello world</h1>"
+        }
+    })
+</script>
+<hr>
+<div id="div1"></div>
+<div id="div2"></div>
+<script>
+    const div1=document.getElementById("div1");
+    const div2=document.getElementById("div2");
+    div1.innerText="<h1>hello world</h1>"
+    div2.innerHTML="<h1>hello world</h1>"
+</script>
+
+</body>
+</html>

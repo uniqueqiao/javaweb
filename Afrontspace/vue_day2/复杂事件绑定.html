@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.2.6.12.js"></script>
+<!--
+    <script src="http://cdn.jsdeliver.net/npm/vue@2/dist/vue.js"></script>
+-->
+</head>
+<body>
+<div id="app">
+    <!--方法不加括号，可以实现很多复杂功能，但加上括号就失效了-->
+    <button @click="test1">按钮</button>
+    <div style="border: 1px solid blue" @click="test2"> 1111</div>
+</div>
+
+<script>
+    new Vue({
+        el:"#app",//标签选择器 只能选一个且不能是html body
+        data:{
+            num:0,
+        },
+        methods:{
+            test1(){
+                console.log("helloworld")
+            },
+            test2(){
+                console.log("test2")
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.2.6.12.js"></script>
+    <script src="http://cdn.jsdeliver.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" >
+    {{text}}<br>
+    {{num}}<br>
+    {{bool}}<br>
+    <span :title="message">请把鼠标悬停在这一行来查看提示信息</span><br>
+    <img :src="imgUrl"/>
+</div>
+<script>
+    let app = new Vue({
+        el:"#app",
+        data:{
+            text:"测试",
+            num:22,
+            bool:true,
+            message: "这是一些提示信息",
+            imgUrl: "img/1.png"
+        }
+    });
+</script>
+</body>
+</html>

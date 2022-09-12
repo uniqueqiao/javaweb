@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <c1 sign="+"></c1>
+        <c1 sign="-"></c1>
+        <c1 sign="*"></c1>
+        <c1 sign="/"></c1>
+
+    </div>
+
+    <script>
+        let c1={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+            <div>
+                <input type="text" v-model.number="a">{{sign}}<input type="text" v-model.number="b">
+                <button type="button" @click="compute">=</button><span>{{result}}</span>
+            </div>
+            `,
+            data(){
+                return {
+                    a:4,
+                    b:2,
+                    result:0
+                }
+
+            },
+            props:["sign"],
+            methods:{
+                compute(){
+                    if(this.sign === "+")
+                        this.result=this.a+this.b
+                    if(this.sign === "-")
+                        this.result=this.a-this.b
+                    if(this.sign === "*")
+                        this.result=this.a*this.b
+                    if(this.sign === "/")
+                        this.result=this.a/this.b
+                   /* this.result=eval(this.a+this.sign+this.b)*/
+                }
+            },
+        }
+        new Vue({
+            el:"#app",
+
+
+            components:{
+                c1
+            }
+        })
+
+    </script>
+</body>
+</html>

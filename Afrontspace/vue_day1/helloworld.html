@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a{
+            color: red;
+        }
+        .b{
+            font-size: 24px;
+        }
+        .test1{
+            font-family: KaiTi;
+        }
+        #d1{
+            color: blueviolet;
+        }
+        div{
+             border: 1px solid aqua ;
+         }
+        .d2{
+
+        }
+        /*儿子选择器*/
+        #d1>.s1{
+            color: blue;
+        }
+        /*后代选择器*/
+        .d1 .s1{
+            font-size: 24px;
+        }
+        /*并集选择器*/
+        .d3,.s4{
+            font-size: 40px;
+        }
+        /*交集选择器*/
+        .d2.s1{
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    11111
+    22222
+    这是一段文字
+    <div title="test" class="test1 a b">
+        这是一个div
+    </div>
+    <img src="aaa" alt="图片未正常加载">
+
+    <!--普通文本框-->
+    用户名：<input type="text" name="name" placeholder="输入用户名">
+    <!--密码文本框-->
+    密码：<input type="password" name="psw"  placeholder="输入密码">
+    <!--多行文本框-->
+    <textarea name="textarea">11111111</textarea>
+
+    <div class="d1" id="d1">
+        第一个div
+        <span class="s1">d1</span>
+    </div>
+    <div class="d2">
+        第二个div
+        <span class="s1">d2</span>
+    </div>
+    <div class="d3">
+        第三个div
+        <span class="s2">d3</span>
+    </div>
+    <div class="d4">
+        第四个div
+        <span class="s4">d4</span>
+    </div>
+    <div class="d2 s1">
+        第五个div
+        <span >d4</span>
+    </div>
+</body>
+</html>

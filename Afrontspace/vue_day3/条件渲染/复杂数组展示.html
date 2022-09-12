@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(u,a) in users":key="u.id">
+                <td>{{a+1}}</td>
+                <td>{{u.name}}</td>
+                <td >{{u.age}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                users:[
+                    {id:1,name:"zs",age:17},
+                    {id:2,name:"ld",age:18},
+                    {id:3,name:"ww",age:19},
+                ]
+            },
+        })
+    </script>
+</body>
+</html>

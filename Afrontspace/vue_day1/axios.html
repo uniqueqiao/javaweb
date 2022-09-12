@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="es6-promise.auto.min.js"></script>
+    <script src="axios.0.20.0.js"></script>
+</head>
+<body>
+<div>
+    <h3>添加用户</h3>
+    <form action="${pageContext.request.contextPath}/user/add" method="post" >
+        姓名:<input type="text" id="ipt-name" name="name">&nbsp;&nbsp;&nbsp;
+        年龄:<input type="text" id="ipt-age" name="age">&nbsp;&nbsp;&nbsp;
+        生日:<input type="date" id="ipt-bir" name="bir">&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="add">
+    </form>
+    <div style="color: red" id="error-msg">${requestScope.errorMess}</div>
+</div>
+<h3>显示所有用户</h3>
+<table border="1" id="table">
+    <tr id="tr">
+        <td>Id</td>
+        <td>username</td>
+        <td>age</td>
+        <td>bir</td>
+    </tr>
+</table>
+<script>
+    axios.get("http://127.0.0.1:8989/user/showAll").then(
+        resp=>{
+            console.log(resp.data)
+            //遍历
+            for(var i=0;i<resp.length;i++){
+                var p=resp[i];
+                $("#table").children().append("<tr><td>"+p.id+"</td>" +
+                    "<td>"+p.name+"</td>" +
+                    "<td>"+p.age+"</td>" +
+                    "<td>"+p.bir+"</td></tr>")
+            }
+        }
+    )
+    //发送key=value
+    /*axios.post("http://127.0.0.1:8989/user/add"),`name=axios&age=18&bir=1999-9-9`)
+    .then(
+        resp=>{
+            console.log(resp.data())
+        }
+    )
+    //发送JSON
+    axios.post("http://127.0.0.1:8989/user/add"),{name:"axios",age:18,bir:"1999-9-9"})
+    .then(
+        resp=>{
+            console.log(resp.data())
+        }
+    )*/
+</script>
+</body>
+</html>

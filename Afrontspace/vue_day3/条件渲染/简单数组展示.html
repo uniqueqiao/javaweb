@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!--简单数组不建议写：key
+            :key 是在当前遍历中唯一的值，而且不能是下标
+            ：key 减少复杂业务的逻辑错误-->
+            <li v-for="n in nums" >{{n}}</li>
+        </ul>
+        <ul>
+            <li v-for="(n,i) in nums" >{{i+1}}---{{n}}</li>
+        </ul>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                nums:[1,2,3,4,5,6]
+            },
+        })
+    </script>
+</body>
+</html>

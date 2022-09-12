@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+    <script src="../vue-router.3.5.1.js"></script>
+    <script src="../es6-promise.auto.min.js"></script>
+    <script src="../axios.0.20.0.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/">去首页</router-link>|
+        <router-link to="/add">添加用户页</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const instance=axios.create({
+            baseURL:"http://127.0.0.1:8989"
+        })
+        // 多个组件
+        let home={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+                <div style="border: 1px solid blue">
+                    <table border="1px">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>姓名</th>
+                                <th>年龄</th>
+                                <th>生日</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-if="users.length>0" v-for="u in users":key="u.id">
+                            <td>{{u.id}}</td>
+                            <td>{{u.name}}</td>
+                            <td>{{u.age}}</td>
+                            <td>{{u.bir}}</td>
+                            <td><button type="button" @click="del(u.id)">delete</button>
+                                <button type="button" @click="update(u.id)">update</button>
+                            </td>
+                        </tr>
+                        <tr v-if="users.length===0">
+                            <td colspan="4">加载中</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            `,
+            data(){
+                return{
+                    users:[],
+                    user:{
+                        id:"",
+                        name:"",
+                        age:"",
+                        bir:""
+                    }
+                }
+            },
+            created(){
+                this.getData();
+            },
+            methods: {
+                getData() {
+                    instance.get("/user/showAll").then(resp => {
+                        if (resp.data.status) {
+                            this.users = resp.data.data
+                        } else {
+                            alert(resp.data.message)
+                        }
+                    })
+                },
+                del(id){
+                    instance.get("/user/delete?id="+id).then(resp =>{
+                        if(resp.data.status){
+                           console.log("aaa")
+                            this.getData()
+                        }else {
+                            alert(resp.data.message)
+                        }
+                    })
+                },
+                update(id){
+                    this.$router.push(`/update?id=${id}`)
+                }
+            }
+        }
+        let add={
+            template:`
+            <div style="border: 1px solid pink">
+                姓名：<input type="text" v-model="user.name">
+                年龄：<input type="text" v-model="user.age">
+                生日：<input type="date" v-model="user.bir">
+                <button type="button" @click="add">add</button>
+            </div>
+            `,
+            data(){
+                return{
+                    user:{
+                        name:"",
+                        age:"",
+                        bir:""
+                    }
+                }
+
+            },
+            methods: {
+                add(){
+                    instance.post("/user/add",this.user).then(resp =>{
+                        if(resp.data.status){
+                            this.$router.push("/")
+                        }else {
+                            alert(resp.data.message)
+                        }
+                    })
+                }
+            }
+        }
+        let update={
+            template:`
+            <div style="border: 1px solid red">
+                id:<input type="text"  v-model="user.id"><br>
+                姓名：<input type="text" v-model="user.name"><br>
+                年龄：<input type="text" v-model="user.age"><br>
+                生日：<input type="date" v-model="user.bir"><br>
+                <button type="button" @click="update">update</button>
+            </div>
+            `,
+            created() {
+                this.getData()
+            },
+            data(){
+                return{
+                    user:{
+                        id:null,
+                        name:"",
+                        age:"",
+                        bir:""
+                    }
+                }
+
+            },
+            methods: {
+                getData(){
+                    instance.get(`/user/showOne?id=${this.$route.query.id}`,this.user).then(resp => {
+                        if (resp.data.status) {
+                            this.user = resp.data.data
+                        } else {
+                            alert(resp.data.message)
+                        }
+                    })
+                },
+                update(){
+                    instance.post("/user/update",this.user).then(resp =>{
+                        if(resp.data.status){
+                            this.$router.push("/")
+                        }else {
+                            alert(resp.data.message)
+                        }
+                    })
+                }
+            }
+        }
+        //配置组件和url的映射关系
+        const router=new VueRouter({
+            routes:[
+                {path:"/",component:home},
+                {path:"/add",component:add},
+                {path:"/update",component:update}
+            ]
+        })
+        new Vue({
+            el:"#app",
+            router
+
+        })
+    </script>
+</body>
+</html>

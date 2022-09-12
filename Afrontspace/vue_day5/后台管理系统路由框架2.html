@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.2.6.12.js"></script>
+    <script src="js/vue-router.3.5.1.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/reg">注册</router-link>
+        <router-view style="border:1px solid darkred"></router-view>
+    </div>
+
+    <script>
+        // 多个组件
+        let login={template:"<div>登录页面</div>"}
+        let register={template:`<div>注册页面</div>`}
+        let users={
+            template:"<div>用户管理页面</div>"
+        }
+        let admins={
+            template:"<div>管理员管理页面</div>"
+        }
+        let articles={
+            template:"<div>文章管理页面</div>"
+        }
+        let videos={
+            template:"<div>视频管理页面</div>"
+        }
+        let lunbo={
+            template:"<div>轮播图管理页面</div>"
+        }
+        let home={
+            template:`<div>home<router-link to="/lunbo">轮播图管理</router-link>
+</div>`
+        }
+        let main={
+            template:`<div>导航栏
+                <router-link to="/">用户管理</router-link>
+                <router-link to="/admins">管理员管理</router-link>
+                <router-link to="/articles">文章管理</router-link>
+                <router-link to="/videos">视频管理</router-link>
+                <router-link to="/lunbo">轮播图管理</router-link>
+                <router-view></router-view>
+</div>`
+
+        }
+        //配置组件和url的映射关系
+        const router=new VueRouter({
+            routes:[
+                {   path:"/login", component:login},
+                {   path:"/reg", component:register},
+                {   path:"/home", component:home,
+                },
+                {   path:"/",
+                    component:main,
+                    children:[
+                        {   path:"/", component:users},
+                        {   path:"/admins", component:admins},
+                        {   path:"/articles", component:articles},
+                        {   path:"/videos", component:videos},
+                        {   path:"/lunbo", component:lunbo },
+                    ]
+
+
+                },
+            ]
+        })
+        new Vue({
+            el:"#app",
+            router
+
+        })
+    </script>
+</body>
+</html>

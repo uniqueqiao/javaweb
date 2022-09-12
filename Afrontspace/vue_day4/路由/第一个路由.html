@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+    <script src="../vue-router.3.5.1.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/">去首页</router-link>|
+        <router-link to="/user">去用户页</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        // 多个组件
+        let c1={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+                <div style="border: 1px solid blue">
+                    首页
+
+                </div>
+            `,
+        }
+        let c2={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+            <div style="border: 1px solid blue">
+                用户页
+
+            </div>
+            `,
+        }
+        //配置组件和url的映射关系
+        const router=new VueRouter({
+            routes:[
+                {path:"/",component:c1},
+                {path:"/user",component:c2}
+            ]
+        })
+        new Vue({
+            el:"#app",
+            router
+
+        })
+    </script>
+</body>
+</html>

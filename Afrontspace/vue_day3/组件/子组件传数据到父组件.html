@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <c1 @test="a"></c1>
+    </div>
+
+    <script>
+        let c1={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+            <div>
+                <button type="button" @click="$emit('test',100,200)">按钮</button>
+            </div>
+            `,
+        }
+        new Vue({
+            el:"#app",
+            components:{
+                c1
+            },
+            methods:{
+                a(b,c){
+                    console.log(b)//b是100
+                    console.log(c)//c是200
+                }
+            }
+            /*data:{
+                articles:[
+                    {id:1,title:"A"},
+                    {id:2,title:"B"},
+                    {id:3,title:"C"},
+                ]
+            }*/
+        })
+    </script>
+</body>
+</html>

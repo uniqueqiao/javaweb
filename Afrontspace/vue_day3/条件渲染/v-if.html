@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="a===0"><!--a=1时，不显示-->
+            a===0 展示这个div v-if
+        </div>
+        <div v-if="a===1">
+            a===1 展示这个div v-if
+        </div>
+        <hr>
+        <div v-show="a===0">
+            <!--a=1时，只是把该div属性的display设置为none
+            v-show 效率更高，-->
+            a===0 展示这个div v-show
+        </div>
+        <div v-show="a===1">
+            a===1 展示这个div v-show
+        </div>
+        <!--`v-if`可以根据表达式的结果，动态创建（true）和删除（false）所在标签 。
+            `v-show`可以根据表达式的结果，动态显示（true）和隐藏（false）这个标签。-->
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                a:1
+            },
+        })
+    </script>
+</body>
+</html>

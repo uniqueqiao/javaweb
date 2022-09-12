@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.2.6.12.js"></script>
+    <script src="http://cdn.jsdeliver.net/npm/vue@2/dist/vue.js"></script>
+    <style type="text/css">
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+        .blue{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+<!--
+<div :class="{'red': a === 0, 'big': a !== 0}">第三个div</div>
+-->
+<!--<div id="app" :class="{'red': a == 0, 'blue': a==1,'green':a==-1}">
+    对象：文字文字文字文字文字文字文字文字文字
+    <button type="button" @click="excolor">切换颜色</button>
+</div>
+<script>
+    let app = new Vue({
+        el:"#app",
+        data:{
+            a:-1
+        },
+        methods:{
+            excolor(){
+                this.a++;
+                console.log("1:"+this.a)
+                if(this.a==2){
+                    console.log("2:"+this.a)
+                    this.a= -1;
+                    console.log("3:"+this.a)
+                }
+            }
+        }
+    });
+</script>-->
+<div id="app" :class="{'red': a%3 == 0, 'blue': a%3==1,'green':a%3==2}">
+    对象：文字文字文字文字文字文字文字文字文字
+    <button type="button" @click="excolor">切换颜色</button>
+</div>
+<script>
+    let app = new Vue({
+        el:"#app",
+        data:{
+            a:0
+        },
+        methods:{
+            excolor(){
+                this.a++;
+            }
+        }
+    })
+</script>
+<!--<div id="app1" :class="['red','green','blue'][i%3]">
+    单值：文字文字文字文字文字文字文字文字文字
+    <button type="button" @click="excolor">切换颜色</button>
+</div>
+<script>
+    let app = new Vue({
+        el:"#app1",
+        data:{
+            i:0
+        },
+        methods:{
+            excolor(){
+                this.i++;
+            }
+        }
+    });
+</script>-->
+
+</body>
+</html>

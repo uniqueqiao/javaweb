@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.2.6.12.js"></script>
+    <script src="js/vue-router.3.5.1.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/" :class="{'red':$route.name==='abc'}">首页</router-link>
+        <router-link to="/c2" :class="{'red':$route.name==='def'}">第二页</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        // 多个组件
+        //配置组件和url的映射关系
+        const router=new VueRouter({
+            routes:[
+                {path:"/",
+                    name:"abc",
+                    component:{
+                    template:
+                        `
+                            <div style="border: 1px solid blue">
+                                111111111
+                                <button type="button" @click="toC2">按钮</button>
+                            </div>
+                        `,
+                        methods:{
+                            toC2(){
+                                this.$router.push("/c2")
+                                console.log(this.$router===router)
+                            }
+                        }
+                    }},
+                {path:"/c2",
+                    name:"def",
+                    component:{
+                        template:
+                            `
+                <div style="border: 1px solid blue">
+                    2222222222
+
+                </div>
+            `,
+
+                    }},
+            ]
+        })
+        new Vue({
+            el:"#app",
+            router
+
+        })
+    </script>
+</body>
+</html>

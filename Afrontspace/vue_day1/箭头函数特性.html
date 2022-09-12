@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const a1 = {
+            age:100,
+            test1(){
+                console.log("test1",this.age)//100
+                console.log("test1",this === a1)//true
+            },
+            //非箭头函数在调用时决定this
+            test2(){
+                let a=function(){
+                    console.log("test2",this.age)//undefined
+                    console.log("test2",this === a1)//false
+                }
+                setTimeout(a,0)
+            },
+            //箭头函数在声明时决定this
+            test3(){
+                let a=()=>{
+                    console.log(this === a1)//100
+                    console.log("test3",this === a1)//true
+                }
+                setTimeout(a,0)
+            }
+        }
+        //a1.test1();
+        a1.test2();
+        //a1.test3();
+        //箭头函数不能作为对象的方法
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.2.6.12.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <button type="button" @click="a=!a">创建或删除第一个组件</button>
+        <qfl  v-if="a"></qfl>
+        <hr>
+        <qfl v-for="n in nums" :key="n"></qfl>
+    </div>
+
+    <script>
+        // 写个js对象，里面至少提供一个template属性，就形成了组件选项对象
+        //当这个组件选项对象注册到vue对象中之后，自己也变成了一个vue对象
+        let test={
+            //template中写这个组件的view模板，只能有唯一的根标签
+            template:`
+            <div>
+                <div>1111{{message}}</div>
+                <div>2222</div>
+                <button type="button" @click="num++">{{num}}</button>
+                <button type="button" @click="test">test</button>
+                {{MESSAGE}}
+            </div>
+            `,
+            data(){
+                return{
+                    message:"hello",
+                    num:0
+                }
+            },
+            methods:{
+                test(){
+                    console.log("test")
+                }
+            },
+            computed:{
+                MESSAGE(){
+                    return this.message.toUpperCase()
+                }
+            },
+            created(){
+                console.log("created")
+            },
+            beforeDestroy(){
+                console.log("beforeDestroy")
+            }
+        }
+        new Vue({
+            el:"#app",
+            components:{
+                //子组件
+                qfl:test
+            },
+            data:{
+                a:true,
+                nums:[0,1,2]
+            }
+        })
+    </script>
+</body>
+</html>

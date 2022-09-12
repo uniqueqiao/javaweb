@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="es6-promise.auto.min.js"></script>
+    <script src="axios.0.20.0.js"></script>
+</head>
+<body>
+<div>
+    <h3>添加用户</h3>
+    姓名:<input type="text" id="ipt-name" name="name">&nbsp;&nbsp;&nbsp;
+    年龄:<input type="text" id="ipt-age" name="age">&nbsp;&nbsp;&nbsp;
+    生日:<input type="date" id="ipt-bir" name="bir">&nbsp;&nbsp;&nbsp;
+    <input type="button" value="add" onclick="submit()">
+</div>
+    <h3>显示所有用户</h3>
+        <table border="1" id="tb">
+            <thead >
+                <tr >
+                    <td>Id</td>
+                    <td>username</td>
+                    <td>age</td>
+                    <td>bir</td>
+                </tr>
+            </thead>
+            <tbody id="tbo">
+
+            </tbody>
+        </table>
+
+
+
+</body>
+<script>
+    //实例化axios
+    const instance = axios.create({
+        baseURL: "http://127.0.0.1:8989", //基础地址
+    })
+    //显示所有
+    setTimeout(f1,200)
+    var tb=$("#tbo");
+    var name1=$("#ipt-name");
+    var age1=$("#ipt-age");
+    var bir1=$("#ipt-bir");
+    //add
+    //JSON收参
+    function submit(){
+        let name=name1.val();
+        let age=age1.val();
+        let bir=bir1.val();
+        instance.post("/user/add", {name:name,age:age,bir:bir}
+    ).then(
+            resp=>{
+                console.log(resp.data.status)
+            }
+        )
+        tb.empty();
+        setTimeout(f1,50)
+    }
+    //字符串
+    /*function submit(){
+        let name=name1.val();
+        let age=age1.val();
+        let bir=bir1.val();
+        instance.post("/user/add",`name=${name}&age=${age}&bir=${bir}`).then(
+            resp=>{
+                console.log(resp.data.status)
+            }
+        )
+        tb.empty();
+        setTimeout(f1,50)
+    }*/
+    function f1(){
+        instance.get("/user/showAll").then(
+            resp=>{
+                console.log(resp.data)
+                //alert(resp.data.data.length);
+                for(var i=0;i<resp.data.data.length;i++){
+                    var p=resp.data.data[i];
+                    // alert(p);
+                    var tr =`<tr>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td>${p.age}</td>
+                    <td>${p.bir}</td>
+                </tr>`;
+                    tb.append(tr);
+                }
+            }
+        )
+    }
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.2.6.12.js"></script>
+    <script src="js/vue-router.3.5.1.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/" >home</router-link>
+        <router-link to="/zoo" >zoo</router-link>
+        <router-view style="border:1px solid darkred"></router-view>
+    </div>
+
+    <script>
+        // 多个组件
+        let home={
+            template:"<div>家</div>"
+
+        }
+        let zoo={
+            template:`<div>动物园
+                <router-view></router-view>
+                </div>`
+
+        }
+        let lion={
+            template:"<div>狮子</div>"
+
+        }
+        let tiger={
+            template:"<div>老虎</div>"
+
+        }
+        //配置组件和url的映射关系
+        const router=new VueRouter({
+            routes:[
+                {   path:"/", component:home},
+                {   path:"/zoo",
+                    component:zoo,
+                    children:[
+                        {   path:"/zoo", component:tiger},
+                        {   path:"/zoo/lion", component:lion},
+                    ]
+
+
+                },
+            ]
+        })
+        new Vue({
+            el:"#app",
+            router
+
+        })
+    </script>
+</body>
+</html>

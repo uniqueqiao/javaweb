@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../es6-promise.auto.min.js"></script>
+    <script src="../vue.2.6.12.js"></script>
+    <script src="../axios.0.20.0.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+    姓名：<input type="text" v-model="user.name">
+    年龄：<input type="text" v-model="user.age">
+    生日：<input type="date" v-model="user.bir">
+    <button type="button" @click="add">add</button>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>生日</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-if="users.length>0" v-for="(u) in users":key="u.id">
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <td >{{u.age}}</td>
+            <td >{{u.bir}}</td>
+        </tr>
+        <tr v-if="users.length===0">
+            <td colspan="4">加载中</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const instance=axios.create({
+        baseURL:"http://127.0.0.1:8989"
+    })
+    let app = new Vue({
+        el:"#app",
+        data:{
+            users:[],
+            user:{
+                name:"",
+                age:"",
+                bir:""
+            }
+        },
+        created(){
+            this.getData();
+        },
+        methods:{
+            getData(){
+                instance.get("/user/showAll").then(resp =>{
+                    if(resp.data.status){
+                        this.users=resp.data.data
+                    }else {
+                        alert(resp.data.message)
+                    }
+                })
+            },
+            add(){
+                instance.post("/user/add",this.user).then(resp =>{
+                    if(resp.data.status){
+                        this.getData()
+                    }else {
+                        alert(resp.data.message)
+                    }
+                })
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
