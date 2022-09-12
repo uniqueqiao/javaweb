@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <script src="/js1/vue.2.6.12.js"></script>
+    <script src="/js1/vue-router.3.5.1.js"></script>
+    <script src="/js1/es6-promise.auto.min.js"></script>
+    <script src="/js1/axios.0.20.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script>
+        const instance = axios.create({
+            baseURL: "/user"
+        })
+
+
+        let home = {
+            template:
+            `
+<div>
+    <router-link to="/add">去添加</router-link>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>生日</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr v-for="u in users" :key="u.id">
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.age}}</td>
+            <td>{{u.bir}}</td>
+            <td>
+                <button type="button" @click="del(u.id)">删除</button>
+                <button type="button" @click="update(u.id)">更新</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+            `,
+            created(){
+                this.getData()
+            },
+            data(){
+                return{
+                    users:[]
+                }
+            },
+            methods: {
+                getData(){
+                    instance.get("/all").then( resp => {
+                        if(resp.data.status){
+                            this.users = resp.data.data
+                        }else{
+                            alert(resp.data.msg)
+                        }
+                    } )
+                },
+                del(id){
+                    instance.get(`del?id=${id}`).then(  resp => {
+                        if(resp.data.status){
+                            this.getData()
+                        }else{
+                            alert(resp.data.msg)
+                        }
+                    })
+                },
+                update(id){
+                    this.$router.push(`/edit?id=${id}`)
+                }
+            }
+        }
+
+        let add = {
+            template:
+                `
+<div>
+    姓名：<input type="text" v-model.trim="user.name"><br>
+    年龄：<input type="text" v-model.number="user.age"><br>
+    生日：<input type="date" v-model="user.bir"><br>
+    <button type="button" @click="add">添加</button>
+</div>
+            `,
+            data(){
+                return {
+                    user: {
+                        name: "",
+                        age: "",
+                        bir: ""
+                    }
+                }
+            },
+            methods: {
+                add(){
+                    instance.post("add", this.user).then(  resp => {
+                        if(resp.data.status){
+                            this.$router.push("/")
+                        }else{
+                            alert(resp.data.msg)
+                        }
+                    })
+                }
+            }
+        }
+
+        let edit = {
+            template:
+                `
+<div>
+    姓名：<input type="text" v-model.trim="user.name"><br>
+    年龄：<input type="text" v-model.number="user.age"><br>
+    生日：<input type="date" v-model="user.bir"><br>
+    <button type="button" @click="update">更新</button>
+</div>
+            `,
+            data(){
+                return {
+                    user: {
+                        id: "",
+                        name: "",
+                        age: "",
+                        bir: ""
+                    }
+                }
+            },
+            created(){
+                this.getData()
+            },
+            methods: {
+                getData(){
+                    instance.get(`/one?id=${this.$route.query.id}`).then( resp => {
+                        if(resp.data.status){
+                            this.user = resp.data.data
+                        }else{
+                            alert(resp.data.msg)
+                        }
+                    } )
+                },
+                update(){
+                    instance.post("edit", this.user).then(  resp => {
+                        if(resp.data.status){
+                            this.$router.push("/")
+                        }else{
+                            alert(resp.data.msg)
+                        }
+                    })
+                }
+            }
+        }
+
+
+        const router = new VueRouter({
+            routes:[
+                {path: "/", component: home},
+                {path: "/add", component: add},
+                {path: "/edit", component: edit}
+            ]
+        })
+
+
+        new Vue({
+            el: "#app",
+            router
+        })
+    </script>
+</body>
+</html>

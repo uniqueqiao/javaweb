@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.qfl.dao.UserDao">
+    <select id="queryAll"  resultType="User">
+        select * from  user
+    </select>
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id" >
+        insert into user(name,age,bir) values(#{name},#{age},#{bir})
+    </insert>
+    <select id="queryByName"  resultType="User">
+        select * from  user where name=#{name}
+    </select>
+    <select id="queryById"  resultType="User">
+        select * from  user where id=#{id}
+    </select>
+    <!--deleteById-->
+    <delete id="deleteById" parameterType="Integer" >
+        delete from user where id=#{id}
+    </delete>
+    <update id="updateById" parameterType="User">
+        update user set name=#{name},age=#{age},bir=#{bir} where id=#{id}
+    </update>
+</mapper>
